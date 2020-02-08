@@ -1,33 +1,37 @@
 package model.character;
+// The user controlled character
 
-public class PlayableCharacter implements Character {
+public class PlayableCharacter extends Character {
+
+    //EFFECT: The playable character
+    public PlayableCharacter() {
+        this.name = "Graham";
+        this.victoryLine = "Thank God";
+        this.deathLine = "Em.. i... lyyyyyy..";
+        this.alive = true;
+        this.hasWon = false;
+    }
+
+
     @Override
-    public void talk(Character character) {
+    protected void talk(Character character) {
 
     }
 
     @Override
-    public void shoot(Character character) {
+    protected void shoot(Character character, Character opponent) {
 
     }
 
     @Override
-    public void die(Character character) {
+    protected void lose(Character character) {
 
     }
 
     @Override
-    public void win(Character character) {
+    protected void setReactionSpeed(double selectedDifficulty) {
 
-    }
-
-    @Override
-    public void lose(Character character) {
-
-    }
-
-    @Override
-    public boolean didWin(Character character) {
-        return false;
     }
 }
+}
+

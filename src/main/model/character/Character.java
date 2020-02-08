@@ -1,24 +1,68 @@
 package model.character;
 
-public interface Character {
-    boolean alive = true;
-    boolean hasWon = false;
+// Set's up the options for the characters in the game
+public abstract class Character {
+    protected String name;
+    protected String victoryLine;
+    protected String deathLine;
+    protected boolean alive;
+    protected boolean hasWon;
 
-    //EFFECTS: Character puts out a line of dialogue
-    void talk(Character character);
 
-    //REQUIRES: Character and Opponent are alive
-    //MODIFIES: Opponent and Character
-    //EFFECTS: Causes opponent to die and character to win
-    void shoot(Character character, Character opponent);
+    // EFFECTS: character puts out a line of dialogue
+    protected abstract void talk(Character character);
 
-    //REQUIRES: Character is alive
-    //
-    void die(Character character);
+    // REQUIRES: character and opponent are alive
+    // MODIFIES: opponent and character
+    // EFFECTS: Causes opponent to die and character to win
+    protected abstract void shoot(Character character, Character opponent);
 
-    void win(Character character);
+    // REQUIRES: Character is alive
+    // MODIFIES: character
+    // EFFECTS: The character dies
+    protected void die(Character character) {
+        System.out.println(character.playDeathLine());
+        character.alive = false;
+    }
 
-    void lose(Character character);
+    // MODIFIES: character
+    // EFFECTS: flags that character has won
+    protected void win(Character character) {
+        character.playVictoryLine();
+        System.out.println("You won!!");
+    }
 
-    boolean didWin(Character character);
+    // MODIFIES: character
+    // EFFECTS: flags that the character has lost
+    protected abstract void lose(Character character);
+
+    // getter
+    protected boolean didWin(Character character) {
+        return hasWon;
+    }
+
+    // setter
+    protected void setName(String newName) {
+        this.name = newName;
+    }
+
+    // getter
+    public String getName() {
+        return this.name;
+    }
+
+    // getter
+    protected void playVictoryLine() {
+        System.out.println(this.victoryLine);
+    }
+
+    // getter
+    protected String playDeathLine() {
+        System.out.println(this.deathLine);
+    }
+
+    public abstract void setReactionSpeed(double selectedDifficulty);
+
+    public abstract Double getReactionSpeed();
+
 }
