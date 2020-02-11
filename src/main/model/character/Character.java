@@ -7,43 +7,20 @@ public abstract class Character {
     protected String deathLine;
     protected boolean alive;
     protected boolean hasWon;
-
-
-    // EFFECTS: character puts out a line of dialogue
-    protected abstract void talk(Character character);
-
-    // REQUIRES: character and opponent are alive
-    // MODIFIES: opponent and character
-    // EFFECTS: Causes opponent to die and character to win
-    protected abstract void shoot(Character character, Character opponent);
+    protected long reactionSpeed;
 
     // REQUIRES: Character is alive
     // MODIFIES: character
     // EFFECTS: The character dies
-    protected void die(Character character) {
-        System.out.println(character.playDeathLine());
-        character.alive = false;
+    public void die() {
+        this.playDeathLine();
+        this.alive = false;
     }
 
     // MODIFIES: character
     // EFFECTS: flags that character has won
-    protected void win(Character character) {
-        character.playVictoryLine();
-        System.out.println("You won!!");
-    }
-
-    // MODIFIES: character
-    // EFFECTS: flags that the character has lost
-    protected abstract void lose(Character character);
-
-    // getter
-    protected boolean didWin(Character character) {
-        return hasWon;
-    }
-
-    // setter
-    protected void setName(String newName) {
-        this.name = newName;
+    public void win() {
+        this.playVictoryLine();
     }
 
     // getter
@@ -57,12 +34,16 @@ public abstract class Character {
     }
 
     // getter
-    protected String playDeathLine() {
+    protected void playDeathLine() {
         System.out.println(this.deathLine);
     }
 
-    public abstract void setReactionSpeed(double selectedDifficulty);
+    public abstract void setReactionSpeed(long selectedDifficulty);
 
-    public abstract Double getReactionSpeed();
+    // getter
+    public long getReactionSpeed() {
+        return this.reactionSpeed;
+    }
+
 
 }

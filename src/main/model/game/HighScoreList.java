@@ -6,7 +6,7 @@ import java.util.ArrayList;
 // The high score list for which players will store their high scores
 
 public class HighScoreList {
-    public ArrayList<Double> highScoreList;
+    public ArrayList<Long> highScoreList;
     protected static final int LIST_MAX_SIZE = 5;
 
     // EFFECTS: Constructs new high score list
@@ -18,25 +18,25 @@ public class HighScoreList {
     // MODIFIES: this
     // EFFECTS: adds the new score to the list making sure it stays in order,
     //         assume the list is already in order
-    public void addHighScore(Double newScore) {
+    public void addHighScore(long newScore) {
+        int tally = 0;
         if (highScoreList.isEmpty()) {
             highScoreList.add(newScore);
         } else {
-            int currentDigit = 0;
-            for (double hs: highScoreList) {
-                if (hs > newScore & !highScoreList.contains(newScore)) {
-                    highScoreList.add(currentDigit, newScore);
-                    if (highScoreList.size() > 5) {
-                        highScoreList.remove(6);
+            for (long score : highScoreList) {
+                if ((score > newScore) & !highScoreList.contains(newScore)) {
+                    highScoreList.add(tally, newScore);
+                    if (highScoreList.size() > (LIST_MAX_SIZE - 1)) {
+                        highScoreList.remove(LIST_MAX_SIZE);
                     }
                 }
-                currentDigit++;
+                tally++;
             }
         }
     }
 
     // getter
-    public Double getHighScore(int num) {
-        return this.highScoreList.get(num);
+    public long getHighScore(int num) {
+        return this.highScoreList.get(num - 1);
     }
 }

@@ -6,32 +6,37 @@ public class PlayableCharacter extends Character {
     //EFFECT: The playable character
     public PlayableCharacter() {
         this.name = "Graham";
-        this.victoryLine = "Thank God";
-        this.deathLine = "Em.. i... lyyyyyy..";
+        this.victoryLine = this.name + ": Thank God";
+        this.deathLine = this.name + ": Em.. i... lyyyyyy..";
         this.alive = true;
         this.hasWon = false;
     }
 
-
-    @Override
-    protected void talk(Character character) {
-
+    public void setReactionSpeed(long reactionTime) {
+        this.reactionSpeed = reactionTime;
     }
 
     @Override
-    protected void shoot(Character character, Character opponent) {
+    public void win() {
+        super.win();
+        System.out.println(this.name + ": Time for the next challenge");
 
     }
 
-    @Override
-    protected void lose(Character character) {
-
+    public boolean hasShot() {
+        return false;
     }
 
-    @Override
-    protected void setReactionSpeed(double selectedDifficulty) {
 
+    //getter
+    public boolean getHasWon() {
+        return this.hasWon;
     }
+
+    public void setHasWon(Boolean outcome) {
+        this.hasWon = outcome;
+    }
+
 }
-}
+
 

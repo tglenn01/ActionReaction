@@ -2,18 +2,41 @@ package ui;
 
 import model.game.HighScoreList;
 
+import java.util.Scanner;
+
+// Process for registering inputs is from the TellerApp
 // Start of new game
 public class GameUI {
-    private HighScoreList gameHighScores;
+    public HighScoreList gameHighScores;
+    private Scanner input;
 
-    public GameUI() {
-        gameHighScores = new HighScoreList();
+    public GameUI(HighScoreList highScoreList) {
+        gameHighScores = highScoreList;
+        runNewGame();
+    }
+
+    private void runNewGame() {
+        boolean keepGoing = true;
+        String command = null;
+        input = new Scanner(System.in);
+
+        while (keepGoing) {
+            displayMainMenu();
+            command = input.next();
+            command = command.toLowerCase();
+
+            if (command.equals("exit")) {
+                keepGoing = false;
+            } else {
+                processCommand(command);
+            }
+        }
     }
 
     private void processCommand(String command) {
-        if (command.equals("new game")) {
+        if (command.equals("dual")) {
             startNewDual();
-        } else if (command.equals("high scores")) {
+        } else if (command.equals("highscores")) {
             checkHighScores();
         } else {
             System.out.println("Selection not valid...");
@@ -23,42 +46,47 @@ public class GameUI {
     // EFFECTS: displays the main menu to the user to pick what they want to do/see
     private void displayMainMenu() {
         System.out.println("\nChoose One");
-        System.out.println("\nnew game");
-        System.out.println("\nhigh scores");
+        System.out.println("Dual");
+        System.out.println("Highscores");
+        System.out.println("exit");
     }
 
     // EFFECTS: starts a new dual after selecting new game
     private void startNewDual() {
-        double selectedDifficulty = selectDifficulty();
-        new Dual(selectedDifficulty);
+        long selectedDifficulty = selectDifficulty();
+        new Dual(selectedDifficulty, gameHighScores);
     }
 
     // EFFECTS: shows all the high scores from the play session
     private void checkHighScores() {
         int listLength = 0;
         for (double score : gameHighScores.highScoreList) {
-            System.out.println(listLength + gameHighScores.getHighScore(listLength) + "\n");
             listLength++;
+            System.out.println(listLength + gameHighScores.getHighScore(listLength) + "\n");
         }
     }
 
     // MODIFIES: this
     // EFFECTS: gives the user the option to choose how hard the dual will be
-    private double selectDifficulty() {
-        double difficulty = 0;
+    private long selectDifficulty() {
+        long difficulty = 0;
+        String command = null;
         System.out.println("Choose your difficulty\n" + "1, 2, 3, 4, 5");
-        if (command.equals(1)) {
+        command = input.next();
+        if (command.equals("1")) {
             difficulty = 1;
-        } else if (command.equals(2)) {
+        } else if (command.equals("2")) {
             difficulty = 2;
-        } else if (command.equals(3)) {
+        } else if (command.equals("3")) {
             difficulty = 3;
-        } else if (command.equals(4)) {
+        } else if (command.equals("4")) {
             difficulty = 4;
-        } else if (command.equals(5)) {
+        } else if (command.equals("5")) {
             difficulty = 5;
         } else {
+            difficulty = 1;
             System.out.println("Wow that's on a whole different level that I can't comprehend");
+            runNewGame();
         }
         return difficulty;
     }
