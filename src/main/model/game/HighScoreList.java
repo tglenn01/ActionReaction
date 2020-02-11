@@ -20,17 +20,19 @@ public class HighScoreList {
     //         assume the list is already in order
     public void addHighScore(long newScore) {
         int tally = 0;
+        int correctValue = 0;
         if (highScoreList.isEmpty()) {
             highScoreList.add(newScore);
         } else {
             for (long score : highScoreList) {
                 if ((score > newScore) & !highScoreList.contains(newScore)) {
-                    highScoreList.add(tally, newScore);
-                    if (highScoreList.size() > (LIST_MAX_SIZE - 1)) {
-                        highScoreList.remove(LIST_MAX_SIZE);
-                    }
+                    correctValue = tally;
                 }
                 tally++;
+            }
+            highScoreList.add(correctValue, newScore);
+            if (highScoreList.size() > (LIST_MAX_SIZE - 1)) {
+                highScoreList.remove(LIST_MAX_SIZE);
             }
         }
     }

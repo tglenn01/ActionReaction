@@ -52,7 +52,7 @@ public class Dual {
     private void afterDual(HighScoreList gameHighScore) {
         if (hero.getHasWon()) {
             wonDual(gameHighScore);
-            System.out.println("Your time was " + hero.getReactionSpeed());
+            System.out.println("Your time was " + hero.getReactionSpeed() + "ms");
         } else {
             lostDual();
         }
