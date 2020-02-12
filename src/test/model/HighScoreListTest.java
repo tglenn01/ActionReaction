@@ -20,7 +20,7 @@ class HighScoreListTest {
 
 
     @BeforeEach
-    private void RunBefore() {
+    private void runBefore() {
         emptyList = new HighScoreList();
 
         longOne = 1000;

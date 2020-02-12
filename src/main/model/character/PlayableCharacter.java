@@ -7,8 +7,8 @@ public class PlayableCharacter extends Character {
     //EFFECT: The playable character
     public PlayableCharacter() {
         this.name = "Graham";
-        this.victoryLine = this.name + ": Thank God";
-        this.deathLine = this.name + ": Em.. i... lyyyyyy..";
+        this.victoryLine = this.name + ": Oh no he's dead!";
+        this.deathLine = this.name + ": Em.. i... lyyyyyy.. sorry    I, could...n't.. survive";
         this.alive = true;
         this.hasWon = false;
     }
@@ -18,15 +18,16 @@ public class PlayableCharacter extends Character {
         this.reactionSpeed = reactionTime;
     }
 
+    // setter
+    public void setHasWon(Boolean outcome) {
+        this.hasWon = outcome;
+    }
+
     // getter
     public boolean getHasWon() {
         return this.hasWon;
     }
 
-    // setter
-    public void setHasWon(Boolean outcome) {
-        this.hasWon = outcome;
-    }
 
 }
 

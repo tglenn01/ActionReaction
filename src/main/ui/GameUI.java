@@ -21,7 +21,7 @@ public class GameUI {
     // EFFECTS: displays main options and is where the game quits when exit is inputted
     private void runNewGame() {
         boolean keepGoing = true;
-        String command = null;
+        String command;
         input = new Scanner(System.in);
 
         while (keepGoing) {
@@ -45,7 +45,7 @@ public class GameUI {
         } else if (command.equals("highscores")) {
             checkHighScores();
         } else {
-            System.out.println("Selection not valid...");
+            System.out.println("The input was as valid as whole foods 'validating' my parking");
         }
     }
 
@@ -75,8 +75,8 @@ public class GameUI {
     // MODIFIES: this
     // EFFECTS: gives the user the option to choose how hard the dual will be
     private long selectDifficulty() {
-        long difficulty = 0;
-        String command = null;
+        long difficulty;
+        String command;
         System.out.println("Choose your difficulty\n" + "1, 2, 3, 4, 5");
         command = input.next();
         if (command.equals("1")) {

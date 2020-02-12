@@ -44,7 +44,7 @@ public class Dual {
         try {
             new ReactionTimer(hero, enemy);
         } catch (InterruptedException e) {
-            System.out.println("error");
+            System.out.println("Someone has stopped the dual: Oh no it's a magic attack!");
         }
     }
 

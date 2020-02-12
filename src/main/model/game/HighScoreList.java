@@ -1,6 +1,7 @@
 package model.game;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 // The high score list for which players will store their high scores
@@ -25,18 +26,8 @@ public class HighScoreList {
         if (highScoreList.isEmpty()) {
             highScoreList.add(newScore);
         } else {
-            for (long score : highScoreList) {
-                tally++;
-                if ((score > newScore) & !highScoreList.contains(newScore)) {
-                    correctValue = tally;
-                    foundValue = true;
-                }
-            }
-            if (foundValue) {
-                highScoreList.add(tally, newScore);
-            } else {
-                highScoreList.add(tally, newScore);
-            }
+            highScoreList.add(newScore);
+            Collections.sort(highScoreList);
             if (highScoreList.size() > (LIST_MAX_SIZE)) {
                 highScoreList.remove(LIST_MAX_SIZE);
             }

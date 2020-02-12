@@ -2,11 +2,11 @@ package model.character;
 
 // Set's up the options for the characters in the game
 public abstract class Character {
-    protected String name;
-    protected String victoryLine;
-    protected String deathLine;
-    protected boolean alive;
-    protected boolean hasWon;
+    public String name;
+    public String victoryLine;
+    public String deathLine;
+    public boolean alive;
+    public boolean hasWon;
     protected long reactionSpeed;
 
     // REQUIRES: Character is alive
@@ -14,14 +14,16 @@ public abstract class Character {
     // EFFECTS: The character dies
     public String die() {
         this.alive = false;
-        return this.playDeathLine();
+        return this.getDeathLine();
     }
 
-    // MODIFIES: this
     // EFFECTS: flags that character has won
     public String win() {
-        return this.playVictoryLine();
+        return this.getVictoryLine();
     }
+
+    // setter
+    public abstract void setReactionSpeed(long reactionTime);
 
     // getter
     public String getName() {
@@ -29,17 +31,14 @@ public abstract class Character {
     }
 
     // getter
-    protected String playVictoryLine() {
+    public String getVictoryLine() {
         return this.victoryLine;
     }
 
     // getter
-    protected String playDeathLine() {
+    public String getDeathLine() {
         return this.deathLine;
     }
-
-    // setter
-    public abstract void setReactionSpeed(long selectedDifficulty);
 
     // getter
     public long getReactionSpeed() {
