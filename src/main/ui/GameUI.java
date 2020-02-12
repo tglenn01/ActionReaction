@@ -4,7 +4,7 @@ import model.game.HighScoreList;
 
 import java.util.Scanner;
 
-// Process for registering inputs is from the TellerApp
+// (Citation: Process for registering inputs is from the TellerApp)
 // Start of new game
 public class GameUI {
     public HighScoreList gameHighScores;

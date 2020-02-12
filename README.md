@@ -12,9 +12,9 @@ a heart pulling story.
  creative liberties and create something I personally find fun and hope other can too.
 
 USER'S STORY (phase one):
-- As a user, I want to be able to be prompted to press a button when I should react.
+- As a user, I want to be able to be prompted to draw my weapon when I should react.
 - As a user, I want to be able to know whether I won the dual or not.
 - As a user, I want to be able to add my times to a high score list.
-- As a user, I want the game to select a difficulty and have harder enemies to dual.
+- As a user, I want the game to select a difficulty and have harder duals to win.
 
 

@@ -6,7 +6,7 @@ public class PlayableCharacter extends Character {
 
     //EFFECT: The playable character
     public PlayableCharacter() {
-        this.name = "Graham";
+        this.name = "Graham The Hero";
         this.victoryLine = this.name + ": Oh no he's dead!";
         this.deathLine = this.name + ": Em.. i... lyyyyyy.. sorry    I, could...n't.. survive";
         this.alive = true;

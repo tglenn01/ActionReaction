@@ -6,8 +6,6 @@ import model.character.PlayableCharacter;
 import model.game.HighScoreList;
 import static java.lang.Thread.sleep;
 
-// (Citation: http://sub-second.blogspot.com/2012/08/how-to-measure-response-times-in-java.html)
-
 // The dual system in the game runs through here
 public class Dual {
     private PlayableCharacter hero;
@@ -59,18 +57,21 @@ public class Dual {
         }
     }
 
-    // MODIFIES: gameHighScores
+    // MODIFIES: gameHighScores, enemy
     // EFFECTS: enemy dies, hero wins, gameHighScores is added to the HighScoreList
     private void wonDual(HighScoreList gameHighScore) {
         System.out.println(enemy.die());
         System.out.println(hero.win());
+        System.out.println("You Won!");
         gameHighScore.addHighScore(hero.getReactionSpeed());
     }
 
+    // MODIFIES: hero
     // EFFECTS: hero dies and enemy wins
     private void lostDual() {
         System.out.println(hero.die());
         System.out.println(enemy.win());
+        System.out.println("You Died! Try again next time.");
     }
 
     // EFFECTS: starts anew game with the updated HighScoreList
