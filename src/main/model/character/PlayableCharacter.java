@@ -1,4 +1,5 @@
 package model.character;
+
 // The user controlled character
 
 public class PlayableCharacter extends Character {
@@ -12,27 +13,17 @@ public class PlayableCharacter extends Character {
         this.hasWon = false;
     }
 
+    // setter
     public void setReactionSpeed(long reactionTime) {
         this.reactionSpeed = reactionTime;
     }
 
-    @Override
-    public void win() {
-        super.win();
-        System.out.println(this.name + ": Time for the next challenge");
-
-    }
-
-    public boolean hasShot() {
-        return false;
-    }
-
-
-    //getter
+    // getter
     public boolean getHasWon() {
         return this.hasWon;
     }
 
+    // setter
     public void setHasWon(Boolean outcome) {
         this.hasWon = outcome;
     }

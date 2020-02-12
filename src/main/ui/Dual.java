@@ -33,7 +33,7 @@ public class Dual {
         } catch (InterruptedException e) {
             System.out.println("error");
         }
-        System.out.println("press a then enter on !");
+        System.out.println("type draw then press enter on !");
     }
 
     // REQUIRES: selectedDifficulty between 5 and 1
@@ -48,7 +48,8 @@ public class Dual {
         }
     }
 
-
+    // MODIFIES: hero, enemy, this
+    // EFFECTS: determines what to do if the hero won or lost
     private void afterDual(HighScoreList gameHighScore) {
         if (hero.getHasWon()) {
             wonDual(gameHighScore);
@@ -58,17 +59,21 @@ public class Dual {
         }
     }
 
+    // MODIFIES: gameHighScores
+    // EFFECTS: enemy dies, hero wins, gameHighScores is added to the HighScoreList
     private void wonDual(HighScoreList gameHighScore) {
-        enemy.die();
-        hero.win();
+        System.out.println(enemy.die());
+        System.out.println(hero.win());
         gameHighScore.addHighScore(hero.getReactionSpeed());
     }
 
+    // EFFECTS: hero dies and enemy wins
     private void lostDual() {
-        hero.die();
-        enemy.win();
+        System.out.println(hero.die());
+        System.out.println(enemy.win());
     }
 
+    // EFFECTS: starts anew game with the updated HighScoreList
     private void resetGame(HighScoreList gameHighScore) {
         new GameUI(gameHighScore);
     }

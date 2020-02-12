@@ -10,11 +10,15 @@ public class GameUI {
     public HighScoreList gameHighScores;
     private Scanner input;
 
+    // MODIFIES: gameHighScore
+    // EFFECTS: Constructs new game
     public GameUI(HighScoreList highScoreList) {
         gameHighScores = highScoreList;
         runNewGame();
     }
 
+    // MODIFIES: input
+    // EFFECTS: displays main options and is where the game quits when exit is inputted
     private void runNewGame() {
         boolean keepGoing = true;
         String command = null;
@@ -33,6 +37,8 @@ public class GameUI {
         }
     }
 
+    // MODIFIES: command
+    // EFFECTS: run corresponding method depending on what user inputs
     private void processCommand(String command) {
         if (command.equals("dual")) {
             startNewDual();
@@ -60,9 +66,9 @@ public class GameUI {
     // EFFECTS: shows all the high scores from the play session
     private void checkHighScores() {
         int listLength = 0;
-        for (double score : gameHighScores.highScoreList) {
+        for (long score : gameHighScores.highScoreList) {
             listLength++;
-            System.out.println(listLength + gameHighScores.getHighScore(listLength) + "\n");
+            System.out.println(listLength + ") " + score + "ms");
         }
     }
 

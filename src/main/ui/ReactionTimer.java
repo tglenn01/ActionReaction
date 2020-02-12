@@ -4,14 +4,13 @@ import model.character.Character;
 import model.character.PlayableCharacter;
 
 import java.util.Scanner;
-
-import java.sql.Time;
-
 import static java.lang.Thread.sleep;
 
 public class ReactionTimer {
     long reactionTime;
 
+    // MODIFIES: hero
+    // EFFECTS: win dual if ui inputs the action faster than the enemy's reaction speed
     ReactionTimer(PlayableCharacter hero, Character enemy) throws InterruptedException {
         String command = null;
         Scanner input = new Scanner(System.in);
@@ -21,7 +20,7 @@ public class ReactionTimer {
         System.out.println("!");
         long milliStart = System.currentTimeMillis();
         command = input.next();
-        if (command.equals("a")) {
+        if (command.equals("draw")) {
             long milliEnd = System.currentTimeMillis();
             reactionTime = milliEnd - milliStart;
             hero.setReactionSpeed(reactionTime);

@@ -10,17 +10,17 @@ public abstract class Character {
     protected long reactionSpeed;
 
     // REQUIRES: Character is alive
-    // MODIFIES: character
+    // MODIFIES: this
     // EFFECTS: The character dies
-    public void die() {
-        this.playDeathLine();
+    public String die() {
         this.alive = false;
+        return this.playDeathLine();
     }
 
-    // MODIFIES: character
+    // MODIFIES: this
     // EFFECTS: flags that character has won
-    public void win() {
-        this.playVictoryLine();
+    public String win() {
+        return this.playVictoryLine();
     }
 
     // getter
@@ -29,15 +29,16 @@ public abstract class Character {
     }
 
     // getter
-    protected void playVictoryLine() {
-        System.out.println(this.victoryLine);
+    protected String playVictoryLine() {
+        return this.victoryLine;
     }
 
     // getter
-    protected void playDeathLine() {
-        System.out.println(this.deathLine);
+    protected String playDeathLine() {
+        return this.deathLine;
     }
 
+    // setter
     public abstract void setReactionSpeed(long selectedDifficulty);
 
     // getter
