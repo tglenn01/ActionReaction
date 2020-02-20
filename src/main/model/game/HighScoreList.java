@@ -20,9 +20,6 @@ public class HighScoreList {
     // EFFECTS: adds the new score to the list making sure it stays in order,
     //          assume the list is already in order
     public void addHighScore(long newScore) {
-        int tally = 0;
-        int correctValue = 0;
-        boolean foundValue = false;
         if (highScoreList.isEmpty()) {
             highScoreList.add(newScore);
         } else {

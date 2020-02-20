@@ -16,5 +16,8 @@ USER'S STORY (phase one):
 - As a user, I want to be able to know whether I won the dual or not.
 - As a user, I want to be able to add my times to a high score list.
 - As a user, I want the game to select a difficulty and have harder duals to win.
+(Phase two)
+- As a user, I want to be able to save my list of high scores
+- As a user, I want to be able to start the game with the same high scores with which I saved
 
 

@@ -10,7 +10,6 @@ import static java.lang.Thread.sleep;
 public class Dual {
     private PlayableCharacter hero;
     private Character enemy;
-    private HighScoreList gameHighScore;
 
     // REQUIRES: selectedDifficulty between 5 and 1
     // EFFECTS: creates a new dual
