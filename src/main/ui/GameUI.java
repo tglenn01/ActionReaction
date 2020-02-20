@@ -1,6 +1,7 @@
 package ui;
 
 import model.game.HighScoreList;
+import persistance.SaveData;
 
 import java.util.Scanner;
 
@@ -44,6 +45,8 @@ public class GameUI {
             startNewDual();
         } else if (command.equals("highscores")) {
             checkHighScores();
+        } else if (command.equals("save")) {
+            saveHighScores();
         } else {
             System.out.println("The input was as valid as whole foods 'validating' my parking");
         }
@@ -54,7 +57,13 @@ public class GameUI {
         System.out.println("\nChoose One");
         System.out.println("Dual");
         System.out.println("Highscores");
-        System.out.println("exit");
+        System.out.println("Save");
+        System.out.println("Exit");
+    }
+
+    private void saveHighScores() {
+        new SaveData(gameHighScores);
+        System.out.println("Highscores were saved!");
     }
 
     // EFFECTS: starts a new dual after selecting new game
