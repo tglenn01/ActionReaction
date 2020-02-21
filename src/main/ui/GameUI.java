@@ -1,6 +1,7 @@
 package ui;
 
 import model.game.HighScoreList;
+import persistance.ReadData;
 import persistance.SaveData;
 
 import java.util.Scanner;
@@ -13,8 +14,7 @@ public class GameUI {
 
     // MODIFIES: gameHighScore
     // EFFECTS: Constructs new game
-    public GameUI(HighScoreList highScoreList) {
-        gameHighScores = highScoreList;
+    public GameUI() {
         runNewGame();
     }
 
@@ -24,6 +24,8 @@ public class GameUI {
         boolean keepGoing = true;
         String command;
         input = new Scanner(System.in);
+
+        loadSaveHighScores();
 
         while (keepGoing) {
             displayMainMenu();
@@ -59,6 +61,15 @@ public class GameUI {
         System.out.println("Highscores");
         System.out.println("Save");
         System.out.println("Exit");
+    }
+
+    private void loadSaveHighScores() {
+        try {
+            ReadData data = new ReadData();
+            gameHighScores = data.getSaveHighScores();
+        } catch (Exception e) {
+            gameHighScores = new HighScoreList();
+        }
     }
 
     private void saveHighScores() {

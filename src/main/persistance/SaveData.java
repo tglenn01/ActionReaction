@@ -2,19 +2,27 @@ package persistance;
 
 import model.game.HighScoreList;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringWriter;
-import java.util.ArrayList;
 
 public class SaveData {
-    public SaveData(HighScoreList list) throws IOException {
-        JSONArray jsonlist = new JSONArray();
-        for (int i = 0; list.getSize() >= i; i++) {
-            jsonlist.add(i, list.getHighScore(i));
-        }
-        ArrayWritter out =
+    private static final String ACCOUNTS_FILE = "./data/highScores.txt";
 
-        ;
+    public SaveData(HighScoreList list) {
+        JSONObject jsonObject = new JSONObject();
+        JSONArray jsonList = new JSONArray();
+        for (int i = 0; list.getSize() > i; i++) {
+            jsonList.add(i, list.getHighScore(i));
+        }
+
+        jsonObject.put("highScores", jsonList);
+
+        try (FileWriter file = new FileWriter(ACCOUNTS_FILE)) {
+            file.write(jsonList.toJSONString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

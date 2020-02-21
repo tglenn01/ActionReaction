@@ -19,7 +19,6 @@ public class Dual {
         beforeDual();
         startOfDual(selectedDifficultly);
         afterDual(gameHighScore);
-        resetGame(gameHighScore);
     }
 
     // EFFECTS: gives the user information on who is fighting and a brief tutorial
@@ -71,10 +70,5 @@ public class Dual {
         System.out.println(hero.die());
         System.out.println(enemy.win());
         System.out.println("You Died! Try again next time.");
-    }
-
-    // EFFECTS: starts anew game with the updated HighScoreList
-    private void resetGame(HighScoreList gameHighScore) {
-        new GameUI(gameHighScore);
     }
 }
