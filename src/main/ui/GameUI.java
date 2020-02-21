@@ -4,6 +4,7 @@ import model.game.HighScoreList;
 import persistance.ReadData;
 import persistance.SaveData;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 // (Citation: Process for registering inputs is from the TellerApp)
@@ -77,7 +78,11 @@ public class GameUI {
 
     // EFFECTS: saves state of HighScoreList
     private void saveHighScores() {
-        new SaveData(gameHighScores, ACCOUNTS_FILE);
+        try {
+            new SaveData(gameHighScores, ACCOUNTS_FILE);
+        } catch (IOException e) {
+            System.out.println("Error saving high scores");
+        }
         System.out.println("Highscores were saved!");
     }
 
