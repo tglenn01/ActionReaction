@@ -9,10 +9,10 @@ import java.util.Scanner;
 // (Citation: Process for registering inputs is from the TellerApp)
 // Start of new game
 public class GameUI {
+    private static final String ACCOUNTS_FILE = "./data/highScores.txt";
     public HighScoreList gameHighScores;
     private Scanner input;
 
-    // MODIFIES: gameHighScore
     // EFFECTS: Constructs new game
     public GameUI() {
         runNewGame();
@@ -20,6 +20,7 @@ public class GameUI {
 
     // MODIFIES: input
     // EFFECTS: displays main options and is where the game quits when exit is inputted
+    //          also loads previous save data
     private void runNewGame() {
         boolean keepGoing = true;
         String command;
@@ -40,7 +41,6 @@ public class GameUI {
         }
     }
 
-    // MODIFIES: command
     // EFFECTS: run corresponding method depending on what user inputs
     private void processCommand(String command) {
         if (command.equals("dual")) {
@@ -63,17 +63,21 @@ public class GameUI {
         System.out.println("Exit");
     }
 
+    // MODIFIES: this, gameHighScores
+    // EFFECTS: If their is save data from a previous session then recreate
+    //          the old HighScoreList otherwise create new HighScoreList
     private void loadSaveHighScores() {
         try {
-            ReadData data = new ReadData();
-            gameHighScores = data.getSaveHighScores();
+            ReadData data = new ReadData(ACCOUNTS_FILE);
+            gameHighScores = data.getSavedHighScores();
         } catch (Exception e) {
             gameHighScores = new HighScoreList();
         }
     }
 
+    // EFFECTS: saves state of HighScoreList
     private void saveHighScores() {
-        new SaveData(gameHighScores);
+        new SaveData(gameHighScores, ACCOUNTS_FILE);
         System.out.println("Highscores were saved!");
     }
 

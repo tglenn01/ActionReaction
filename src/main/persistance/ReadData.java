@@ -9,29 +9,31 @@ import org.json.simple.parser.ParseException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.Iterator;
 
-
+// Citation: https://mkyong.com/java/json-simple-example-read-and-write-json/
+// Takes saved high score list and recreates it
 public class ReadData {
-    private static final String ACCOUNTS_FILE = "./data/highScores.txt";
-    HighScoreList saveHighScores;
+    HighScoreList savedHighScores;
 
-    public ReadData() throws IOException, ParseException {
+    // MODIFIES: savedHighScores
+    // EFFECTS: takes saved HighScoreList and recreates it
+    public ReadData(String account) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        saveHighScores = new HighScoreList();
+        savedHighScores = new HighScoreList();
 
-        try (Reader reader = new FileReader(ACCOUNTS_FILE)) {
+        try (Reader reader = new FileReader(account)) {
 
             JSONObject jsonObject = (JSONObject) parser.parse(reader);
             JSONArray highScores = (JSONArray) jsonObject.get("highScores");
 
             for (Object highScore : highScores) {
-                saveHighScores.addHighScore((Long) highScore);
+                savedHighScores.addHighScore((Long) highScore);
             }
         }
     }
 
-    public HighScoreList getSaveHighScores() {
-        return saveHighScores;
+    // getter
+    public HighScoreList getSavedHighScores() {
+        return savedHighScores;
     }
 }
