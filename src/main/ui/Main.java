@@ -1,9 +1,17 @@
 package ui;
 
+import javafx.application.Application;
+import javafx.stage.Stage;
 
 // EFFECTS: start new game with empty high score list
-public class Main {
+public class Main extends Application {
+
     public static void main(String[] args) {
-        new GameUI();
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        new GameUI(primaryStage);
     }
 }

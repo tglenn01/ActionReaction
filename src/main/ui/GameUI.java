@@ -1,67 +1,61 @@
 package ui;
 
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import model.game.HighScoreList;
 import persistance.ReadData;
 import persistance.SaveData;
+import ui.tools.HighScoreButton;
+import ui.tools.DualButton;
+import ui.tools.SaveButton;
 
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 // (Citation: Process for registering inputs is from the TellerApp)
+// Sources: https://docs.oracle.com/javafx/2/layout/size_align.htm
+//
 // Start of new game
-public class GameUI {
+public class GameUI extends Application implements EventHandler<ActionEvent> {
     private static final String ACCOUNTS_FILE = "./data/highScores.txt";
+    private static final int GAME_HEIGHT = 500;
+    private static final int GAME_WIDTH = 500;
+
     public HighScoreList gameHighScores;
-    private Scanner input;
+
+    public Button dualButton;
+    public Button highScoresButton;
+    public Button saveButton;
+    public List<Button> buttonList;
+
+
 
     // EFFECTS: Constructs new game
-    public GameUI() {
-        runNewGame();
-    }
-
-    // MODIFIES: input
-    // EFFECTS: displays main options and is where the game quits when exit is inputted
-    //          also loads previous save data
-    private void runNewGame() {
-        boolean keepGoing = true;
-        String command;
-        input = new Scanner(System.in);
-
+    public GameUI(Stage primaryStage) throws Exception {
         loadSaveHighScores();
-
-        while (keepGoing) {
-            displayMainMenu();
-            command = input.next();
-            command = command.toLowerCase();
-
-            if (command.equals("exit")) {
-                keepGoing = false;
-            } else {
-                processCommand(command);
-            }
-        }
+        start(primaryStage);
     }
 
-    // EFFECTS: run corresponding method depending on what user inputs
-    private void processCommand(String command) {
-        if (command.equals("dual")) {
-            startNewDual();
-        } else if (command.equals("highscores")) {
-            checkHighScores();
-        } else if (command.equals("save")) {
-            saveHighScores();
-        } else {
-            System.out.println("The input was as valid as whole foods 'validating' my parking");
-        }
-    }
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle("Action Reaction!");
 
-    // EFFECTS: displays the main menu to the user to pick what they want to do/see
-    private void displayMainMenu() {
-        System.out.println("\nChoose One");
-        System.out.println("Dual");
-        System.out.println("Highscores");
-        System.out.println("Save");
-        System.out.println("Exit");
+        initializeButtons();
+
+        VBox layout = new VBox(dualButton, highScoresButton, saveButton);
+        layout.setAlignment(Pos.CENTER);
+        layout.setSpacing(10.0);
+
+        Scene scene = new Scene(layout, GAME_WIDTH, GAME_HEIGHT);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     // MODIFIES: this, gameHighScores
@@ -82,6 +76,7 @@ public class GameUI {
             new SaveData(gameHighScores, ACCOUNTS_FILE);
         } catch (IOException e) {
             System.out.println("Error saving high scores");
+            return;
         }
         System.out.println("Highscores were saved!");
     }
@@ -104,25 +99,43 @@ public class GameUI {
     // MODIFIES: this
     // EFFECTS: gives the user the option to choose how hard the dual will be
     private long selectDifficulty() {
-        long difficulty;
-        String command;
-        System.out.println("Choose your difficulty\n" + "1, 2, 3, 4, 5");
-        command = input.next();
-        if (command.equals("1")) {
-            difficulty = 1;
-        } else if (command.equals("2")) {
-            difficulty = 2;
-        } else if (command.equals("3")) {
-            difficulty = 3;
-        } else if (command.equals("4")) {
-            difficulty = 4;
-        } else if (command.equals("5")) {
-            difficulty = 5;
-        } else {
-            difficulty = 1;
-            System.out.println("Wow that's on a whole different level that I can't comprehend");
-            runNewGame();
-        }
-        return difficulty;
+        return 1; // Stub
     }
+
+    @Override
+    public void handle(ActionEvent event) {
+
+        if (event.getSource() == dualButton) {
+            startNewDual();
+        } else if (event.getSource() == highScoresButton) {
+            checkHighScores();
+        } else if (event.getSource() == saveButton) {
+            saveHighScores();
+        }
+    }
+
+    private void initializeButtons() {
+        dualButton = new DualButton();
+        highScoresButton = new HighScoreButton();
+        saveButton = new SaveButton();
+
+        buttonList = new ArrayList<>();
+        buttonList.add(dualButton);
+        buttonList.add(highScoresButton);
+        buttonList.add(saveButton);
+
+        for (Button icon: buttonList) {
+            icon.setOnAction(this);
+        }
+
+    }
+    /*
+    Todo for next time!
+     Great job super proud of you btw
+     so first start with setDifficulty()
+     then create a screen for saved data worked
+     then once that is up and running create the high scores page
+     and lastly work on the actual dual since that will require the most comfort
+     Great Job!
+     */
 }
