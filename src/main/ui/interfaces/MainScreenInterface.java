@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import ui.GameUI;
 import ui.tools.DualButton;
@@ -22,7 +23,7 @@ public class MainScreenInterface implements EventHandler<ActionEvent> {
     private List<Button> mainButtonList;
     private Scene mainScene;
     private GameUI gameUI;
-
+    private Region mainScreen;
 
     public MainScreenInterface(GameUI gameUI, int width, int height) {
         this.gameUI = gameUI;
@@ -51,11 +52,16 @@ public class MainScreenInterface implements EventHandler<ActionEvent> {
         layout.getChildren().addAll(mainButtonList);
         layout.setAlignment(Pos.CENTER);
         layout.setSpacing(10.0);
+        mainScreen = layout;
         mainScene = new Scene(layout, width, height);
     }
 
     public Scene getMainScene() {
         return mainScene;
+    }
+
+    public Region getMainScreen() {
+        return mainScreen;
     }
 
     @Override

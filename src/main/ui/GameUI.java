@@ -8,6 +8,7 @@ import persistance.ReadData;
 import persistance.SaveData;
 import ui.interfaces.MainScreenInterface;
 import ui.interfaces.SelectDifficultyInterface;
+import ui.tools.ScreenController;
 
 import java.io.IOException;
 
@@ -21,8 +22,12 @@ public class GameUI extends Application {
     private static final int GAME_WIDTH = 500;
 
     public HighScoreList gameHighScores;
+    private SelectDifficultyInterface selectDifficultyInterface;
+    private MainScreenInterface mainScreenInterface;
 
     private Stage primaryStage;
+
+    public ScreenController screenController;
 
 
     // EFFECTS: Constructs new game
@@ -34,11 +39,15 @@ public class GameUI extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
+        selectDifficultyInterface = new SelectDifficultyInterface(GAME_WIDTH, GAME_HEIGHT);
         primaryStage.setTitle("Action Reaction!");
 
-        MainScreenInterface msi = new MainScreenInterface(this, GAME_WIDTH, GAME_HEIGHT);
+        mainScreenInterface = new MainScreenInterface(this, GAME_WIDTH, GAME_HEIGHT);
 
-        primaryStage.setScene(msi.getMainScene());
+        screenController = new ScreenController(mainScreenInterface.getMainScene());
+        screenController.addScreen("difficultyScreen", selectDifficultyInterface.getDifficultyScreen());
+        screenController.addScreen("mainScreen", mainScreenInterface.getMainScreen());
+        screenController.activate("mainScreen");
         primaryStage.show();
     }
 
@@ -83,18 +92,8 @@ public class GameUI extends Application {
     // MODIFIES: this
     // EFFECTS: gives the user the option to choose how hard the dual will be
     private long selectDifficulty() {
-        Object dummyObj = new Object();
-        SelectDifficultyInterface difficulty = new SelectDifficultyInterface(dummyObj, GAME_WIDTH, GAME_HEIGHT);
-        Scene difficultyScene = difficulty.getDifficultyScene();
-        primaryStage.setScene(difficultyScene);
-        try {
-            synchronized (dummyObj) {
-                dummyObj.wait();
-            }
-        } catch (Exception e) {
-            System.out.println("exception");
-        }
-        return difficulty.getSelectedDifficulty();
+        screenController.activate("difficultyScreen");
+        return selectDifficultyInterface.getSelectedDifficulty();
     }
 
     /*
