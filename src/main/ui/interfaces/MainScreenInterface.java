@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import ui.GameUI;
 import ui.tools.DualButton;
@@ -22,7 +23,6 @@ public class MainScreenInterface implements EventHandler<ActionEvent> {
     private List<Button> mainButtonList;
     private Scene mainScene;
     private GameUI gameUI;
-
 
     public MainScreenInterface(GameUI gameUI, int width, int height) {
         this.gameUI = gameUI;
@@ -54,18 +54,18 @@ public class MainScreenInterface implements EventHandler<ActionEvent> {
         mainScene = new Scene(layout, width, height);
     }
 
-    public Scene getMainScene() {
-        return mainScene;
-    }
-
     @Override
     public void handle(ActionEvent event) {
         if (event.getSource() == dualButton) {
-            gameUI.startNewDual();
+            gameUI.selectDifficulty();
         } else if (event.getSource() == highScoresButton) {
             gameUI.checkHighScores();
         } else if (event.getSource() == saveButton) {
             gameUI.saveHighScores();
         }
+    }
+
+    public Scene getMainScene() {
+        return mainScene;
     }
 }

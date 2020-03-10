@@ -4,11 +4,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import ui.GameUI;
 import ui.tools.DifficultyButton;
 
 import java.util.LinkedList;
@@ -20,12 +19,10 @@ public class SelectDifficultyInterface implements EventHandler<ActionEvent> {
     private List<DifficultyButton> difficultyList;
     private int selectedDifficulty;
     private Scene difficultyScene;
-    private Object waitObject;
+    private GameUI gameUI;
 
-
-
-    public SelectDifficultyInterface(Object waitObject, int width, int height) {
-        this.waitObject = waitObject;
+    public SelectDifficultyInterface(GameUI gameUI, int width, int height) {
+        this.gameUI = gameUI;
         selectedDifficulty = 1;
         difficultyList = new LinkedList<>();
         initialiseDifficultyButtons();
@@ -42,15 +39,15 @@ public class SelectDifficultyInterface implements EventHandler<ActionEvent> {
     private void setScene(int width, int height) {
         Label label = new Label("Choose Your Difficulty!");
 
-        HBox horizantalLayout = new HBox();
-        horizantalLayout.setAlignment(Pos.CENTER);
-        horizantalLayout.setSpacing(10.0);
-        horizantalLayout.getChildren().addAll(difficultyList);
+        HBox horizontalLayout = new HBox();
+        horizontalLayout.setAlignment(Pos.CENTER);
+        horizontalLayout.setSpacing(10.0);
+        horizontalLayout.getChildren().addAll(difficultyList);
 
         VBox verticalLayout = new VBox();
         verticalLayout.setAlignment(Pos.CENTER);
         verticalLayout.setSpacing(10.0);
-        verticalLayout.getChildren().addAll(label, horizantalLayout);
+        verticalLayout.getChildren().addAll(label, horizontalLayout);
 
         difficultyScene = new Scene(verticalLayout, width, height);
     }
@@ -60,13 +57,9 @@ public class SelectDifficultyInterface implements EventHandler<ActionEvent> {
         for (DifficultyButton difficultyButton: difficultyList) {
             if (event.getSource() == difficultyButton) {
                 selectedDifficulty = difficultyButton.getButtonDifficulty();
-                waitObject.notify();
+                gameUI.startNewDual(selectedDifficulty);
             }
         }
-    }
-
-    public int getSelectedDifficulty() {
-        return selectedDifficulty;
     }
 
     public Scene getDifficultyScene() {
