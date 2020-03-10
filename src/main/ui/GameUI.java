@@ -1,9 +1,7 @@
 package ui;
 
 import javafx.application.Application;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import model.game.HighScoreList;
 import persistance.ReadData;
@@ -26,7 +24,7 @@ public class GameUI extends Application {
     public static final int GAME_WIDTH = 500;
 
     public HighScoreList gameHighScores;
-    private MainScreenInterface msi;
+    private MainScreenInterface mainScreenInterface;
 
     public Stage primaryStage;
 
@@ -42,9 +40,9 @@ public class GameUI extends Application {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Action Reaction!");
 
-        msi = new MainScreenInterface(this, GAME_WIDTH, GAME_HEIGHT);
+        mainScreenInterface = new MainScreenInterface(this, GAME_WIDTH, GAME_HEIGHT);
 
-        primaryStage.setScene(msi.getMainScene());
+        primaryStage.setScene(mainScreenInterface.getMainScene());
         primaryStage.show();
     }
 
@@ -91,7 +89,7 @@ public class GameUI extends Application {
     }
 
     public void startOver() {
-        primaryStage.setScene(msi.getMainScene());
+        primaryStage.setScene(mainScreenInterface.getMainScene());
     }
 
     /*
