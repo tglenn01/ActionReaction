@@ -2,56 +2,32 @@ package ui.interfaces;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import ui.GameUI;
-import ui.tools.DualButton;
-import ui.tools.HighScoreButton;
-import ui.tools.SaveButton;
+import ui.defaultlayouts.DefaultButton;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
-public class MainScreenInterface implements EventHandler<ActionEvent> {
+public class MainScreenInterface extends AllScenes implements EventHandler<ActionEvent> {
+    private Scene mainScene;
     private Button dualButton;
     private Button highScoresButton;
     private Button saveButton;
-    private List<Button> mainButtonList;
-    private Scene mainScene;
-    private GameUI gameUI;
 
-    public MainScreenInterface(GameUI gameUI, int width, int height) {
-        this.gameUI = gameUI;
-        mainButtonList = new LinkedList<>();
-        initializeButtons();
-        setScene(width, height);
+    public MainScreenInterface(GameUI gameUI) {
+        super(gameUI);
+        super.initializeGraphics();
+        storeMainScene();
     }
 
-    private void initializeButtons() {
-        dualButton = new DualButton();
-        highScoresButton = new HighScoreButton();
-        saveButton = new SaveButton();
+    protected void initializeRegions() {
+        dualButton = new DefaultButton("Dual!", this);
+        highScoresButton = new DefaultButton("High Scores!", this);
+        saveButton = new DefaultButton("Save!", this);
 
-        mainButtonList = new ArrayList<>();
-        mainButtonList.add(dualButton);
-        mainButtonList.add(highScoresButton);
-        mainButtonList.add(saveButton);
-
-        for (Button icon: mainButtonList) {
-            icon.setOnAction(this);
-        }
-    }
-
-    private void setScene(int width, int height) {
-        VBox layout = new VBox();
-        layout.getChildren().addAll(mainButtonList);
-        layout.setAlignment(Pos.CENTER);
-        layout.setSpacing(10.0);
-        mainScene = new Scene(layout, width, height);
+        regionList.add(dualButton);
+        regionList.add(highScoresButton);
+        regionList.add(saveButton);
     }
 
     @Override
@@ -63,6 +39,10 @@ public class MainScreenInterface implements EventHandler<ActionEvent> {
         } else if (event.getSource() == saveButton) {
             gameUI.saveHighScores();
         }
+    }
+
+    private void storeMainScene() {
+        mainScene = super.getNewScene();
     }
 
     public Scene getMainScene() {

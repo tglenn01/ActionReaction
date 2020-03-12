@@ -1,15 +1,13 @@
-package ui.tools;
+package ui.defaultlayouts;
 
-import javafx.scene.control.Button;
 import ui.interfaces.SelectDifficultyInterface;
 
-public class DifficultyButton extends Button {
+public class DifficultyButton extends DefaultButton {
     private int buttonDifficulty;
 
     public DifficultyButton(int difficulty, SelectDifficultyInterface sdl) {
+        super(Integer.toString(difficulty), sdl);
         this.buttonDifficulty = difficulty;
-        setText(Integer.toString(difficulty));
-        setOnAction(sdl);
     }
 
     public int getButtonDifficulty() {

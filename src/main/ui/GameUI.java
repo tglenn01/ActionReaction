@@ -1,27 +1,20 @@
 package ui;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.game.HighScoreList;
 import persistance.ReadData;
 import persistance.SaveData;
-import ui.interfaces.HighScoreListInterface;
-import ui.interfaces.MainScreenInterface;
-import ui.interfaces.SaveDataInterface;
-import ui.interfaces.SelectDifficultyInterface;
+import ui.interfaces.*;
 
 import java.io.IOException;
 
-// (Citation: Process for registering inputs is from the TellerApp)
 // Sources: https://docs.oracle.com/javafx/2/layout/size_align.htm
 //        : http://tutorials.jenkov.com/javafx/index.html
 //
 // Start of new game
 public class GameUI extends Application {
     private static final String ACCOUNTS_FILE = "./data/highScores.txt";
-    public static final int GAME_HEIGHT = 500;
-    public static final int GAME_WIDTH = 500;
 
     public HighScoreList gameHighScores;
     private MainScreenInterface mainScreenInterface;
@@ -30,19 +23,18 @@ public class GameUI extends Application {
 
 
     // EFFECTS: Constructs new game
-    public GameUI(Stage primaryStage) throws Exception {
+    public GameUI(Stage primaryStage) {
         loadSaveHighScores();
         start(primaryStage);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Action Reaction!");
 
-        mainScreenInterface = new MainScreenInterface(this, GAME_WIDTH, GAME_HEIGHT);
+        mainScreenInterface = new MainScreenInterface(this);
 
-        primaryStage.setScene(mainScreenInterface.getMainScene());
         primaryStage.show();
     }
 
@@ -63,7 +55,6 @@ public class GameUI extends Application {
         try {
             new SaveData(gameHighScores, ACCOUNTS_FILE);
         } catch (IOException e) {
-            System.out.println("Error saving high scores");
             return;
         }
         new SaveDataInterface(this);
@@ -71,8 +62,7 @@ public class GameUI extends Application {
 
     // EFFECTS: starts a new dual after selecting new game
     public void startNewDual(long selectedDifficulty) {
-        new Dual(this, selectedDifficulty, gameHighScores,
-                GAME_WIDTH, GAME_HEIGHT);
+        new Dual(this, selectedDifficulty, gameHighScores);
     }
 
     // EFFECTS: shows all the high scores from the play session
@@ -83,22 +73,10 @@ public class GameUI extends Application {
     // MODIFIES: this
     // EFFECTS: gives the user the option to choose how hard the dual will be
     public void selectDifficulty() {
-        SelectDifficultyInterface difficulty = new SelectDifficultyInterface(this, GAME_WIDTH, GAME_HEIGHT);
-        Scene difficultyScene = difficulty.getDifficultyScene();
-        primaryStage.setScene(difficultyScene);
+        new SelectDifficultyInterface(this);
     }
 
     public void startOver() {
         primaryStage.setScene(mainScreenInterface.getMainScene());
     }
-
-    /*
-    Todo for next time!
-     Great job super proud of you btw
-     so first start with setDifficulty()
-     then create a screen for saved data worked
-     then once that is up and running create the high scores page
-     and lastly work on the actual dual since that will require the most comfort
-     Great Job!
-     */
 }

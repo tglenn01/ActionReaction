@@ -5,24 +5,23 @@ import model.character.NPC;
 import model.character.PlayableCharacter;
 import model.game.HighScoreList;
 import ui.interfaces.dualstates.BeforeDualInterface;
-import ui.interfaces.dualstates.LostDualInterface;
 import ui.interfaces.dualstates.ReactionTimerInterface;
-import ui.interfaces.dualstates.WonDualInterface;
+import ui.interfaces.dualstates.AfterDualInterface;
 
-import static java.lang.Thread.sleep;
 
 // The dual system in the game runs through here
 public class Dual {
+    private GameUI gameUI;
+
     private PlayableCharacter hero;
     private Character enemy;
-    private GameUI gameUI;
+
     private HighScoreList gameHighScore;
     private long selectedDifficultly;
 
     // REQUIRES: selectedDifficulty between 5 and 1
     // EFFECTS: creates a new dual
-    public Dual(GameUI gameUI, long selectedDifficultly, HighScoreList gameHighScore,
-                int width, int height) {
+    public Dual(GameUI gameUI, long selectedDifficultly, HighScoreList gameHighScore) {
         this.gameUI = gameUI;
         this.gameHighScore = gameHighScore;
         this.selectedDifficultly = selectedDifficultly;
@@ -49,22 +48,8 @@ public class Dual {
     // EFFECTS: determines what to do if the hero won or lost
     public void afterDual() {
         if (hero.getHasWon()) {
-            wonDual();
-        } else {
-            lostDual();
+            gameHighScore.addHighScore(hero.getReactionSpeed());
         }
-    }
-
-    // MODIFIES: gameHighScores, enemy
-    // EFFECTS: enemy dies, hero wins, gameHighScores is added to the HighScoreList
-    private void wonDual() {
-        gameHighScore.addHighScore(hero.getReactionSpeed());
-        new WonDualInterface(gameUI, hero);
-    }
-
-    // MODIFIES: hero
-    // EFFECTS: hero dies and enemy wins
-    private void lostDual() {
-        new LostDualInterface(gameUI);
+        new AfterDualInterface(gameUI, hero);
     }
 }
