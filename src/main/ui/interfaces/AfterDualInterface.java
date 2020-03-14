@@ -1,12 +1,12 @@
-package ui.interfaces.dualstates;
+package ui.interfaces;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import model.character.PlayableCharacter;
 import ui.GameUI;
-import ui.interfaces.AllScenes;
+import ui.defaultlayouts.DefaultScene;
 
-public class AfterDualInterface extends AllScenes implements EventHandler<ActionEvent> {
+public class AfterDualInterface extends DefaultScene implements EventHandler<ActionEvent> {
     private PlayableCharacter hero;
 
     public AfterDualInterface(GameUI gameUI, PlayableCharacter hero) {

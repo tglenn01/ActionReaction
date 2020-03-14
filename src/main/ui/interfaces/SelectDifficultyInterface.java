@@ -3,13 +3,14 @@ package ui.interfaces;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import ui.GameUI;
+import ui.defaultlayouts.DefaultScene;
 import ui.defaultlayouts.DifficultyButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class SelectDifficultyInterface extends AllScenes implements EventHandler<ActionEvent> {
+public class SelectDifficultyInterface extends DefaultScene implements EventHandler<ActionEvent> {
     private static final int MAX_DIFFICULTY = 5;
     private List<DifficultyButton> difficultyList;
     private int selectedDifficulty;

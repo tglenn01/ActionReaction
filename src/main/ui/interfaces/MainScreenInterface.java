@@ -5,10 +5,11 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import ui.GameUI;
+import ui.defaultlayouts.DefaultScene;
 import ui.defaultlayouts.DefaultButton;
 
 
-public class MainScreenInterface extends AllScenes implements EventHandler<ActionEvent> {
+public class MainScreenInterface extends DefaultScene implements EventHandler<ActionEvent> {
     private Scene mainScene;
     private Button dualButton;
     private Button highScoresButton;

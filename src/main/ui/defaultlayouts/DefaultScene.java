@@ -1,4 +1,4 @@
-package ui.interfaces;
+package ui.defaultlayouts;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,21 +10,20 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import ui.GameUI;
-import ui.defaultlayouts.DefaultButton;
-import ui.defaultlayouts.DefaultLabel;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class AllScenes {
-    public static final int GAME_HEIGHT = 500;
-    public static final int GAME_WIDTH = 500;
+public abstract class DefaultScene {
+    public static final double GAME_HEIGHT = 600.0;
+    public static final double GAME_WIDTH = 900.0;
     public static final double SPACING = 10.0;
+    public static final String CSS_FILE = "ui/interfaces/actionReactionStylesheet.css";
     protected GameUI gameUI;
     protected Scene newScene;
     protected List<Region> regionList;
 
-    public AllScenes(GameUI gameUI) {
+    public DefaultScene(GameUI gameUI) {
         this.gameUI = gameUI;
         regionList = new LinkedList<>();
     }
@@ -67,18 +66,14 @@ public abstract class AllScenes {
 
     protected void setScene() {
         VBox layout = new VBox();
-        layout.setAlignment(Pos.CENTER);
-        layout.setSpacing(10.0);
         layout.getChildren().addAll(regionList);
+        layout.setSpacing(10.0);
+        layout.setAlignment(Pos.CENTER);
+        layout.setId("background");
         newScene = new Scene(layout, GAME_WIDTH, GAME_HEIGHT);
-        styleBackground(newScene);
+        newScene.getStylesheets().add(CSS_FILE);
         gameUI.primaryStage.setScene(newScene);
     }
-
-    protected void styleBackground(Scene newScene) {
-
-    }
-
 
     protected Scene getNewScene() {
         return newScene;

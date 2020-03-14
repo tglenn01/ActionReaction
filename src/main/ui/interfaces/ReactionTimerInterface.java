@@ -1,19 +1,15 @@
-package ui.interfaces.dualstates;
+package ui.interfaces;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import model.character.Character;
 import model.character.PlayableCharacter;
 import ui.Dual;
 import ui.GameUI;
 import ui.defaultlayouts.DefaultLabel;
-import ui.interfaces.AllScenes;
+import ui.defaultlayouts.DefaultScene;
 
-import java.io.File;
 import java.lang.Math;
 
 import static java.lang.Thread.sleep;
@@ -69,13 +65,15 @@ public class ReactionTimerInterface {
 
     private void setAfterFireScene() {
         Label fireLabel = new DefaultLabel("FIRE!");
-        reactionTimerScene = new Scene(fireLabel, AllScenes.GAME_WIDTH, AllScenes.GAME_HEIGHT);
+        fireLabel.setId("fireLabel");
+        fireLabel.getStylesheets().add(DefaultScene.CSS_FILE);
+        reactionTimerScene = new Scene(fireLabel, DefaultScene.GAME_WIDTH, DefaultScene.GAME_HEIGHT);
         gameUI.primaryStage.setScene(reactionTimerScene);
     }
 
     private int getRandomNumber() {
-        int max = 5000; // 5 seconds
-        int min = 1000; // 1 second
+        int max = 10000; // 10 seconds
+        int min = 5000; // 5 second
         int range = max - min + 1;
         return (int) (Math.random() * range) + min;
     }
@@ -83,6 +81,4 @@ public class ReactionTimerInterface {
     private void playSound() {
         System.out.println("INSERT SOUND HERE");
     }
-
-
 }

@@ -3,8 +3,9 @@ package ui.interfaces;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import ui.GameUI;
+import ui.defaultlayouts.DefaultScene;
 
-public class SaveDataInterface extends AllScenes implements EventHandler<ActionEvent> {
+public class SaveDataInterface extends DefaultScene implements EventHandler<ActionEvent> {
 
     public SaveDataInterface(GameUI gameUI) {
         super(gameUI);

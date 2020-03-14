@@ -2,17 +2,16 @@ package ui.interfaces;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import model.game.HighScoreList;
 import ui.GameUI;
+import ui.defaultlayouts.DefaultScene;
 import ui.defaultlayouts.DefaultLabel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HighScoreListInterface extends AllScenes implements EventHandler<ActionEvent> {
+public class HighScoreListInterface extends DefaultScene implements EventHandler<ActionEvent> {
     private HighScoreList gameHighScores;
 
     public HighScoreListInterface(GameUI gameUI, HighScoreList gameHighScores) {

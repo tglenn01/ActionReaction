@@ -4,9 +4,9 @@ import model.character.Character;
 import model.character.NPC;
 import model.character.PlayableCharacter;
 import model.game.HighScoreList;
-import ui.interfaces.dualstates.BeforeDualInterface;
-import ui.interfaces.dualstates.ReactionTimerInterface;
-import ui.interfaces.dualstates.AfterDualInterface;
+import ui.interfaces.BeforeDualInterface;
+import ui.interfaces.ReactionTimerInterface;
+import ui.interfaces.AfterDualInterface;
 
 
 // The dual system in the game runs through here

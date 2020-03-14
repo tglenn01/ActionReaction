@@ -11,14 +11,5 @@ public class DefaultButton extends Button {
         this.setText(text);
         this.setOnAction(setHandleTo);
         this.setAlignment(Pos.CENTER);
-        initializeGraphics();
-    }
-
-    private void initializeGraphics() {
-        this.setStyle("-fx-background-color: peachpuff; "
-                + "-fx-text-fill: black; "
-                + "-fx-font: 16px 'impact'; "
-                + "-fx-border-style: solid; "
-                + "-fx-border-color: black;");
     }
 }
