@@ -3,7 +3,7 @@ package model.character;
 // A character which the user cannot control
 
 public class NPC extends Character {
-    public static long BASE_REACTION_SPEED = 2000; // in ms
+    public static long BASE_REACTION_SPEED = 1000; // in ms
 
     // EFFECTS: Constructs the non playable character
     public NPC() {

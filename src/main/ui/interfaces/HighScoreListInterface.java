@@ -11,15 +11,19 @@ import ui.defaultlayouts.DefaultLabel;
 import java.util.ArrayList;
 import java.util.List;
 
+// The interface when a user is looking at their highscores
 public class HighScoreListInterface extends DefaultScene implements EventHandler<ActionEvent> {
     private HighScoreList gameHighScores;
 
+    // MODIFIES: this
+    // EFFECTS: Constructs a new DefaultScene
     public HighScoreListInterface(GameUI gameUI, HighScoreList gameHighScores) {
         super(gameUI);
         this.gameHighScores = gameHighScores;
         super.initializeGraphics();
     }
 
+    // EFFECTS: Creates a VBox of DefaultLabels and puts it on top of a DefaultButton
     protected void initializeRegions() {
         List<Label> scoreList = new ArrayList<>();
         int listLength = 0;
@@ -33,6 +37,7 @@ public class HighScoreListInterface extends DefaultScene implements EventHandler
     }
 
     @Override
+    // EFFECTS: returns the user to the mainScreenInterface
     public void handle(ActionEvent event) {
         super.gameUI.startOver();
     }

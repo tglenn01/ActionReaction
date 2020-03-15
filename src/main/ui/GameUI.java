@@ -65,17 +65,18 @@ public class GameUI extends Application {
         new Dual(this, selectedDifficulty, gameHighScores);
     }
 
-    // EFFECTS: shows all the high scores from the play session
+    // EFFECTS: shows all the high scores
     public void checkHighScores() {
         new HighScoreListInterface(this, gameHighScores);
     }
 
-    // MODIFIES: this
     // EFFECTS: gives the user the option to choose how hard the dual will be
     public void selectDifficulty() {
         new SelectDifficultyInterface(this);
     }
 
+    // MODIFIES: this
+    // EFFECTS: sets the user's screen back to the main screen
     public void startOver() {
         primaryStage.setScene(mainScreenInterface.getMainScene());
     }

@@ -7,9 +7,12 @@ import ui.Dual;
 import ui.GameUI;
 import ui.defaultlayouts.DefaultScene;
 
+// The interface for before a user is prompted to fire
 public class BeforeDualInterface extends DefaultScene implements EventHandler<ActionEvent> {
     private Dual dual;
 
+    // MODIFIES: this
+    // EFFECTS: Constructs a new DefaultScene
     public BeforeDualInterface(GameUI gameUI, Dual dual) {
         super(gameUI);
         this.dual = dual;
@@ -17,6 +20,7 @@ public class BeforeDualInterface extends DefaultScene implements EventHandler<Ac
     }
 
     @Override
+    // EFFECTS: Creates an DefaultButton which has a different style when pressed then other DefaultButtons
     protected void initializeRegions() {
         super.createNewLabel("Press ENTER on the prompt to fire your weapon");
         Button advanceButton = super.createAdvanceButton("Armed and Ready", this);
@@ -24,6 +28,7 @@ public class BeforeDualInterface extends DefaultScene implements EventHandler<Ac
     }
 
     @Override
+    // EFFECTS: start the reactionTimeGame
     public void handle(ActionEvent event) {
         dual.reactionTimeDual();
     }

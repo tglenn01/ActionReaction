@@ -19,8 +19,8 @@ public class Dual {
     private HighScoreList gameHighScore;
     private long selectedDifficultly;
 
-    // REQUIRES: selectedDifficulty between 5 and 1
-    // EFFECTS: creates a new dual
+    // MODIFIES: this
+    // EFFECTS: creates a new dual while setting all given parameters
     public Dual(GameUI gameUI, long selectedDifficultly, HighScoreList gameHighScore) {
         this.gameUI = gameUI;
         this.gameHighScore = gameHighScore;
@@ -30,9 +30,6 @@ public class Dual {
         new BeforeDualInterface(this.gameUI, this);
     }
 
-
-
-    // REQUIRES: selectedDifficulty between 5 and 1
     // MODIFIES: hero, enemy, this
     // EFFECTS: runs the active part of the dual
     public void reactionTimeDual() {
@@ -44,7 +41,7 @@ public class Dual {
         }
     }
 
-    // MODIFIES: hero, enemy, this
+    // MODIFIES: this
     // EFFECTS: determines what to do if the hero won or lost
     public void afterDual() {
         if (hero.getHasWon()) {

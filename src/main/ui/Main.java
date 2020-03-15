@@ -3,7 +3,7 @@ package ui;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-// EFFECTS: start new game with empty high score list
+// launches the primary Stage which is then passed on into a new GameUI
 public class Main extends Application {
 
     public static void main(String[] args) {
