@@ -1,0 +1,31 @@
+.button {
+    -fx-background-color: #701616;
+    -fx-border-radius: 8px;
+    -fx-text-fill: #8e9431;
+    -fx-font: 20px 'impact';
+    -fx-padding: 8px 16px;
+}
+
+.button:hover,pressed {
+    -fx-background-color: #3d1c1c;
+}
+
+.label {
+    -fx-text-fill: #8e9431;
+    -fx-font: 20px 'impact';
+}
+
+#background {
+    -fx-background-color: #000000;
+}
+
+#beforeFireButton:pressed {
+    -fx-background-color: #000000;
+    -fx-text-fill: #000000;
+}
+
+#fireLabel {
+    -fx-text-fill: #8e9431;
+    -fx-font: 50px 'impact';
+    -fx-background-color: #000000;
+}

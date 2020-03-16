@@ -12,13 +12,11 @@ import java.io.IOException;
 // Sources: https://docs.oracle.com/javafx/2/layout/size_align.htm
 //        : http://tutorials.jenkov.com/javafx/index.html
 //
-// Start of new game
+// Start of new game, RUN FROM MAIN
 public class GameUI extends Application {
     private static final String ACCOUNTS_FILE = "./data/highScores.txt";
-
     public HighScoreList gameHighScores;
     private MainScreenInterface mainScreenInterface;
-
     public Stage primaryStage;
 
 
@@ -29,6 +27,8 @@ public class GameUI extends Application {
     }
 
     @Override
+    // MODIFIES: this
+    // EFFECTS: Starts the game and sets up the primary stage
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         primaryStage.setTitle("Action Reaction!");
