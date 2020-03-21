@@ -13,10 +13,7 @@ import ui.defaultlayouts.DefaultScene;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.applet.AudioClip;
 import java.io.File;
-import java.io.IOException;
 import java.lang.Math;
 
 import static java.lang.Thread.sleep;

@@ -7,12 +7,20 @@ import java.util.Collections;
 // The high score list for which players will store their high scores
 
 public class HighScoreList {
-    public ArrayList<Long> highScoreList;
-    protected static final int LIST_MAX_SIZE = 5;
+    private ArrayList<Long> scoreList;
+    private static final int LIST_MAX_SIZE = 5;
+    private static HighScoreList highScoreList;
 
     // EFFECTS: Constructs new high score list
-    public HighScoreList() {
-        highScoreList = new ArrayList<>();
+    private HighScoreList() {
+        scoreList = new ArrayList<>();
+    }
+
+    public static HighScoreList getInstance() {
+        if (highScoreList == null) {
+            highScoreList = new HighScoreList();
+        }
+        return highScoreList;
     }
 
     // REQUIRES: newScore >= 0
@@ -20,24 +28,33 @@ public class HighScoreList {
     // EFFECTS: adds the new score to the list making sure it stays in order,
     //          assume the list is already in order
     public void addHighScore(long newScore) {
-        if (highScoreList.isEmpty()) {
-            highScoreList.add(newScore);
+        if (scoreList.isEmpty()) {
+            scoreList.add(newScore);
         } else {
-            highScoreList.add(newScore);
-            Collections.sort(highScoreList);
-            if (highScoreList.size() > (LIST_MAX_SIZE)) {
-                highScoreList.remove(LIST_MAX_SIZE);
+            scoreList.add(newScore);
+            Collections.sort(scoreList);
+            if (scoreList.size() > LIST_MAX_SIZE) {
+                scoreList.remove(LIST_MAX_SIZE);
             }
         }
     }
 
     // getter
     public long getHighScore(int num) {
-        return this.highScoreList.get(num);
+        return scoreList.get(num);
     }
 
     // getter
     public int getSize() {
-        return this.highScoreList.size();
+        return this.scoreList.size();
+    }
+
+    // getter
+    public ArrayList<Long> getScoreList() {
+        return scoreList;
+    }
+
+    public void clearHighScoreList() {
+        scoreList = new ArrayList<>();
     }
 }

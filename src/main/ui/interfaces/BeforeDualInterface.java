@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import ui.Dual;
-import ui.GameUI;
 import ui.defaultlayouts.DefaultScene;
 
 // The interface for before a user is prompted to fire

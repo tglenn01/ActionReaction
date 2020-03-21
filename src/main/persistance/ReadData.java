@@ -13,13 +13,11 @@ import java.io.Reader;
 // Citation: https://mkyong.com/java/json-simple-example-read-and-write-json/
 // Takes saved high score list and recreates it
 public class ReadData {
-    HighScoreList savedHighScores;
 
     // MODIFIES: savedHighScores
     // EFFECTS: takes saved HighScoreList and recreates it
     public ReadData(String account) throws IOException, ParseException {
         JSONParser parser = new JSONParser();
-        savedHighScores = new HighScoreList();
 
         try (Reader reader = new FileReader(account)) {
 
@@ -27,13 +25,8 @@ public class ReadData {
             JSONArray highScores = (JSONArray) jsonObject.get("highScores");
 
             for (Object highScore : highScores) {
-                savedHighScores.addHighScore((Long) highScore);
+                HighScoreList.getInstance().addHighScore((Long) highScore);
             }
         }
-    }
-
-    // getter
-    public HighScoreList getSavedHighScores() {
-        return savedHighScores;
     }
 }

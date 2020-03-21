@@ -32,7 +32,7 @@ small details without having to sort through the whole code
 - the css style sheet is with the default layouts as they all are set to that style
 Requirements for the stage:
 - First event related to HighScoreList) if you press a key (enter) fast enough in the game you store a new high score
-- Second event related to HighScoreList) You can click a button to view all your high scores in order from fast to slow
+- Second event related to HighScoreList) You can click a button to clear your high score list if you desire
 - Audio Component) Along with the Fire! prompt the game will play a noise telling you when to fire your weapon
 - Save Component) You can click the save button on the main screen to save all the high scores and they load when you
 restart the application every time.

@@ -2,7 +2,6 @@ package ui.interfaces;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import ui.GameUI;
 import ui.defaultlayouts.DefaultScene;
@@ -10,7 +9,6 @@ import ui.defaultlayouts.DefaultButton;
 
 // The interface where the user is able to see all the options they can choose
 public class MainScreenInterface extends DefaultScene implements EventHandler<ActionEvent> {
-    public Scene mainScene;
     private Button dualButton;
     private Button highScoresButton;
     private Button saveButton;

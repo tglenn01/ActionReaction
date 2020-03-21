@@ -14,13 +14,11 @@ public class Dual {
     private PlayableCharacter hero;
     private Character enemy;
 
-    private HighScoreList gameHighScore;
     private long selectedDifficultly;
 
     // MODIFIES: this
     // EFFECTS: creates a new dual while setting all given parameters
-    public Dual(long selectedDifficultly, HighScoreList gameHighScore) {
-        this.gameHighScore = gameHighScore;
+    public Dual(long selectedDifficultly) {
         this.selectedDifficultly = selectedDifficultly;
         hero = new PlayableCharacter();
         enemy = new NPC();
@@ -42,7 +40,7 @@ public class Dual {
     // EFFECTS: determines what to do if the hero won or lost
     public void afterDual() {
         if (hero.getHasWon()) {
-            gameHighScore.addHighScore(hero.getReactionSpeed());
+            HighScoreList.getInstance().addHighScore(hero.getReactionSpeed());
         }
         new AfterDualInterface(hero);
     }

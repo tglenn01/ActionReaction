@@ -11,11 +11,11 @@ import java.io.IOException;
 // Saves high score list of current session for future use
 public class SaveData {
 
-    public SaveData(HighScoreList list, String account) throws IOException {
+    public SaveData(String account) throws IOException {
         JSONObject jsonObject = new JSONObject();
         JSONArray jsonList = new JSONArray();
-        for (int i = 0; list.getSize() > i; i++) {
-            jsonList.add(i, list.getHighScore(i));
+        for (int i = 0; HighScoreList.getInstance().getSize() > i; i++) {
+            jsonList.add(i, HighScoreList.getInstance().getHighScore(i));
         }
 
         jsonObject.put("highScores", jsonList);

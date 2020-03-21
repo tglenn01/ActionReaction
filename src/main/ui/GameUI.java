@@ -14,7 +14,6 @@ import java.io.IOException;
 // Start of new game.
 public class GameUI {
     private static final String ACCOUNTS_FILE = "./data/highScores.txt";
-    public HighScoreList gameHighScores;
     private Stage primaryStage;
     private static GameUI gameUI;
 
@@ -23,6 +22,7 @@ public class GameUI {
         loadSaveHighScores();
     }
 
+    // EFFECTS: creates a new instance of gameUI if none created otherwise return one and only gameUI
     public static GameUI getInstance() {
         if (gameUI == null) {
             gameUI = new GameUI();
@@ -35,17 +35,16 @@ public class GameUI {
     //          the old HighScoreList otherwise create new HighScoreList
     private void loadSaveHighScores() {
         try {
-            ReadData data = new ReadData(ACCOUNTS_FILE);
-            gameHighScores = data.getSavedHighScores();
+            new ReadData(ACCOUNTS_FILE);
         } catch (Exception e) {
-            gameHighScores = new HighScoreList();
+            HighScoreList.getInstance();
         }
     }
 
     // EFFECTS: saves state of HighScoreList
     public void saveHighScores() {
         try {
-            new SaveData(gameHighScores, ACCOUNTS_FILE);
+            new SaveData(ACCOUNTS_FILE);
         } catch (IOException e) {
             return;
         }
@@ -54,12 +53,12 @@ public class GameUI {
 
     // EFFECTS: starts a new dual after selecting new game
     public void startNewDual(long selectedDifficulty) {
-        new Dual(selectedDifficulty, gameHighScores);
+        new Dual(selectedDifficulty);
     }
 
     // EFFECTS: shows all the high scores
     public void checkHighScores() {
-        new HighScoreListInterface(gameHighScores);
+        new HighScoreListInterface();
     }
 
     // EFFECTS: gives the user the option to choose how hard the dual will be
