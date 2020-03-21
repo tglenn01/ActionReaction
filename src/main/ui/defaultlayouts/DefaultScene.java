@@ -20,14 +20,11 @@ public abstract class DefaultScene {
     public static final double GAME_WIDTH = 900.0;
     public static final double SPACING = 10.0;
     public static final String CSS_FILE = "ui/defaultlayouts/actionReactionStylesheet.css";
-    protected GameUI gameUI;
-    protected Scene newScene;
     protected List<Region> regionList;
 
     // MODIFIES: this
     // EFFECTS: sets the gameUI to given gameUI and creates a new List for the regionList
-    public DefaultScene(GameUI gameUI) {
-        this.gameUI = gameUI;
+    public DefaultScene() {
         regionList = new LinkedList<>();
     }
 
@@ -89,13 +86,8 @@ public abstract class DefaultScene {
         layout.setSpacing(10.0);
         layout.setAlignment(Pos.CENTER);
         layout.setId("background");
-        newScene = new Scene(layout, GAME_WIDTH, GAME_HEIGHT);
+        Scene newScene = new Scene(layout, GAME_WIDTH, GAME_HEIGHT);
         newScene.getStylesheets().add(CSS_FILE);
-        gameUI.primaryStage.setScene(newScene);
-    }
-
-    // getter
-    protected Scene getNewScene() {
-        return newScene;
+        GameUI.getInstance().getPrimaryStage().setScene(newScene);
     }
 }

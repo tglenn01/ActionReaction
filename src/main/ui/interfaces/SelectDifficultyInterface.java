@@ -17,9 +17,9 @@ public class SelectDifficultyInterface extends DefaultScene implements EventHand
 
     // MODIFIES: this
     // EFFECTS: constructs a new DefaultScene, and initialized difficulty list and sets selectedDifficulty to default 1
-    public SelectDifficultyInterface(GameUI gameUI) {
-        super(gameUI);
-        selectedDifficulty = 1;
+    public SelectDifficultyInterface() {
+        super();
+        selectedDifficulty = 1; // Default Difficulty
         difficultyList = new ArrayList<>();
         super.initializeGraphics();
     }
@@ -42,7 +42,7 @@ public class SelectDifficultyInterface extends DefaultScene implements EventHand
         for (DifficultyButton difficultyButton: difficultyList) {
             if (event.getSource() == difficultyButton) {
                 selectedDifficulty = difficultyButton.getButtonDifficulty();
-                gameUI.startNewDual(selectedDifficulty);
+                GameUI.getInstance().startNewDual(selectedDifficulty);
             }
         }
     }

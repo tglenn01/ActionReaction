@@ -24,7 +24,6 @@ import static java.lang.Thread.sleep;
 // Sources: http://sub-second.blogspot.com/2012/08/how-to-measure-response-times-in-java.html)
 
 public class ReactionTimerInterface {
-    private GameUI gameUI;
     private Dual dual;
 
     private PlayableCharacter hero;
@@ -35,10 +34,8 @@ public class ReactionTimerInterface {
 
     // MODIFIES: hero
     // EFFECTS: win dual if ui inputs the action faster than the enemy's reaction speed
-    public ReactionTimerInterface(GameUI gameUI, Dual dual,
-                                  PlayableCharacter hero, Character enemy) throws InterruptedException {
+    public ReactionTimerInterface(Dual dual, PlayableCharacter hero, Character enemy) throws InterruptedException {
         this.dual = dual;
-        this.gameUI = gameUI;
         this.hero = hero;
         this.enemy = enemy;
         run();
@@ -77,7 +74,7 @@ public class ReactionTimerInterface {
         fireLabel.setId("fireLabel");
         fireLabel.getStylesheets().add(DefaultScene.CSS_FILE);
         reactionTimerScene = new Scene(fireLabel, DefaultScene.GAME_WIDTH, DefaultScene.GAME_HEIGHT);
-        gameUI.primaryStage.setScene(reactionTimerScene);
+        GameUI.getInstance().getPrimaryStage().setScene(reactionTimerScene);
     }
 
     // EFFECTS: produces a random number from 3 to 7 seconds
@@ -97,7 +94,7 @@ public class ReactionTimerInterface {
             clip.open(audioInputStream);
             clip.start();
         } catch (Exception e) {
-            gameUI.startOver();
+            GameUI.getInstance().startOver();
         }
     }
 }

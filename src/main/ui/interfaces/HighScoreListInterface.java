@@ -17,8 +17,8 @@ public class HighScoreListInterface extends DefaultScene implements EventHandler
 
     // MODIFIES: this
     // EFFECTS: Constructs a new DefaultScene
-    public HighScoreListInterface(GameUI gameUI, HighScoreList gameHighScores) {
-        super(gameUI);
+    public HighScoreListInterface(HighScoreList gameHighScores) {
+        super();
         this.gameHighScores = gameHighScores;
         super.initializeGraphics();
     }
@@ -39,6 +39,6 @@ public class HighScoreListInterface extends DefaultScene implements EventHandler
     @Override
     // EFFECTS: returns the user to the mainScreenInterface
     public void handle(ActionEvent event) {
-        super.gameUI.startOver();
+        GameUI.getInstance().startOver();
     }
 }

@@ -11,8 +11,6 @@ import ui.interfaces.AfterDualInterface;
 
 // The dual system in the game runs through here
 public class Dual {
-    private GameUI gameUI;
-
     private PlayableCharacter hero;
     private Character enemy;
 
@@ -21,13 +19,12 @@ public class Dual {
 
     // MODIFIES: this
     // EFFECTS: creates a new dual while setting all given parameters
-    public Dual(GameUI gameUI, long selectedDifficultly, HighScoreList gameHighScore) {
-        this.gameUI = gameUI;
+    public Dual(long selectedDifficultly, HighScoreList gameHighScore) {
         this.gameHighScore = gameHighScore;
         this.selectedDifficultly = selectedDifficultly;
         hero = new PlayableCharacter();
         enemy = new NPC();
-        new BeforeDualInterface(this.gameUI, this);
+        new BeforeDualInterface(this);
     }
 
     // MODIFIES: hero, enemy, this
@@ -35,7 +32,7 @@ public class Dual {
     public void reactionTimeDual() {
         this.enemy.setReactionSpeed(selectedDifficultly);
         try {
-            new ReactionTimerInterface(gameUI, this, hero, enemy);
+            new ReactionTimerInterface(this, hero, enemy);
         } catch (InterruptedException e) {
             System.out.println("ReactionTimerInterface was stopped part way, investigate");
         }
@@ -47,6 +44,6 @@ public class Dual {
         if (hero.getHasWon()) {
             gameHighScore.addHighScore(hero.getReactionSpeed());
         }
-        new AfterDualInterface(gameUI, hero);
+        new AfterDualInterface(hero);
     }
 }

@@ -1,1 +1,1 @@
-{"highScores":[256]}
+{"highScores":[256,304]}

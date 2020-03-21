@@ -21,8 +21,6 @@ USER'S STORY (phase one):
 - As a user, I want to be able to start the game with the same high scores with which I saved
 
 Uses of the Program (for TA)
-- Make sure you run the program from Main! It is set up this way as to avoid having to much code being put
-into the main class as we were advised to not do that.
 - The main point is to able able to test you reaction time and see a general improvement or if you are slipping
 - Start by running main and then selecting your difficulty from 1 to 5, 5 being the hardest
 - After hitting the button declaring you are ready the button will disappear until you are prompted to fire your weapon

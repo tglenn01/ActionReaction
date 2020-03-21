@@ -12,8 +12,8 @@ public class AfterDualInterface extends DefaultScene implements EventHandler<Act
 
     // MODIFIES: this
     // EFFECTS: Constructs a new DefaultScene
-    public AfterDualInterface(GameUI gameUI, PlayableCharacter hero) {
-        super(gameUI);
+    public AfterDualInterface(PlayableCharacter hero) {
+        super();
         this.hero = hero;
         super.initializeGraphics();
     }
@@ -50,6 +50,6 @@ public class AfterDualInterface extends DefaultScene implements EventHandler<Act
     @Override
     // EFFECTS: returns the user to the mainScreenInterface
     public void handle(ActionEvent event) {
-        super.gameUI.startOver();
+        GameUI.getInstance().startOver();
     }
 }

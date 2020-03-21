@@ -9,8 +9,8 @@ import ui.defaultlayouts.DefaultScene;
 public class SaveDataInterface extends DefaultScene implements EventHandler<ActionEvent> {
 
     // EFFECTS: Constructs a new DefaultScene
-    public SaveDataInterface(GameUI gameUI) {
-        super(gameUI);
+    public SaveDataInterface() {
+        super();
         super.initializeGraphics();
     }
 
@@ -23,6 +23,6 @@ public class SaveDataInterface extends DefaultScene implements EventHandler<Acti
     @Override
     // EFFECTS: returns to the main screen
     public void handle(ActionEvent event) {
-        gameUI.startOver();
+        GameUI.getInstance().startOver();
     }
 }

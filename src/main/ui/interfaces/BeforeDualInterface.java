@@ -13,8 +13,8 @@ public class BeforeDualInterface extends DefaultScene implements EventHandler<Ac
 
     // MODIFIES: this
     // EFFECTS: Constructs a new DefaultScene
-    public BeforeDualInterface(GameUI gameUI, Dual dual) {
-        super(gameUI);
+    public BeforeDualInterface(Dual dual) {
+        super();
         this.dual = dual;
         super.initializeGraphics();
     }

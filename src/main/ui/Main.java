@@ -2,6 +2,9 @@ package ui;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import ui.interfaces.MainScreenInterface;
+
+import static javafx.application.Application.launch;
 
 // launches the primary Stage which is then passed on into a new GameUI
 public class Main extends Application {
@@ -12,6 +15,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        new GameUI(primaryStage);
+        GameUI.getInstance().setPrimaryStage(primaryStage);
+        primaryStage.setTitle("Action Reaction!");
+        new MainScreenInterface();
+        primaryStage.show();
     }
 }
