@@ -18,7 +18,7 @@ class HighScoreListTest {
 
 
     @BeforeEach
-    private void runBefore() {
+    void runBefore() {
         longOne = 1000;
         longTwo = 2000;
         longThree = 3000;
@@ -36,12 +36,12 @@ class HighScoreListTest {
     }
 
     @Test
-    public void testSingleHighScore() {
+    void testSingleHighScore() {
         assertEquals(longFive, fullList.getHighScore(4));
     }
 
     @Test
-    public void testAddToMany() {
+    void testAddToMany() {
         assertEquals(5, fullList.getSize());
         fullList.addHighScore(longSix);
         assertEquals(5, fullList.getSize());

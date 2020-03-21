@@ -11,7 +11,6 @@ public class SaveDataInterface extends DefaultScene implements EventHandler<Acti
     // EFFECTS: Constructs a new DefaultScene
     public SaveDataInterface() {
         super();
-        super.initializeGraphics();
     }
 
     // EFFECTS: creates a label confirming the save, then a but to return to the main screen

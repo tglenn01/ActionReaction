@@ -12,35 +12,29 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CharacterTest {
     Character hero;
     Character npc;
-    PlayableCharacter playableCharacter;
 
     @BeforeEach
-    public void runBefore() {
-        hero = new PlayableCharacter();
+    void runBefore() {
+        hero = PlayableCharacter.getInstance();
         npc = new NPC();
-        playableCharacter = new PlayableCharacter();
     }
 
     @Test
-    public void testGetVictoryLine() {
-        assertEquals(hero.victoryLine, hero.getVictoryLine());
+    void testWin() {
+        assertEquals(hero.getVictoryLine(), hero.win());
+        assertEquals("Graham The Hero", hero.getName());
     }
 
     @Test
-    public void testWin() {
-        assertEquals(hero.victoryLine, hero.win());
-    }
-
-    @Test
-    public void testDie() {
-        assertTrue(hero.alive);
-        assertEquals(hero.deathLine, hero.die());
+    void testDie() {
+        assertTrue(hero.getIsAlive());
+        assertEquals(hero.getDeathLine(), hero.die());
         hero.die();
-        assertFalse(hero.alive);
+        assertFalse(hero.getIsAlive());
     }
 
     @Test
-    public void testSetReactionSpeed() {
+    void testSetReactionSpeed() {
         long reactionTime = 5;
         npc.setReactionSpeed(reactionTime);
         hero.setReactionSpeed(reactionTime);
@@ -49,17 +43,16 @@ public class CharacterTest {
     }
 
     @Test
-    public void testGettersAndSetter() {
-        assertEquals(hero.name, hero.getName());
-        assertEquals(playableCharacter.hasWon, playableCharacter.getHasWon());
-        assertEquals(hero.deathLine, hero.getDeathLine());
+    void testHasWon() {
+        hero.setHasWon(false);
+        assertFalse(hero.getHasWon());
+        hero.setHasWon(true);
+        assertTrue(hero.getHasWon());
     }
 
     @Test
-    public void testHasWon() {
-        playableCharacter.setHasWon(false);
-        assertFalse(playableCharacter.getHasWon());
-        playableCharacter.setHasWon(true);
-        assertTrue(playableCharacter.getHasWon());
+    void testClearCharacter() {
+        hero.clearCharacter();
+        npc.clearCharacter();
     }
 }

@@ -26,6 +26,7 @@ public abstract class DefaultScene {
     // EFFECTS: sets the gameUI to given gameUI and creates a new List for the regionList
     public DefaultScene() {
         regionList = new LinkedList<>();
+        initializeGraphics();
     }
 
     // EFFECTS: sets up the graphics

@@ -39,6 +39,11 @@ public class HighScoreList {
         }
     }
 
+    // EFFECTS: clears the high score list
+    public void clearHighScoreList() {
+        scoreList = new ArrayList<>();
+    }
+
     // getter
     public long getHighScore(int num) {
         return scoreList.get(num);
@@ -52,9 +57,5 @@ public class HighScoreList {
     // getter
     public ArrayList<Long> getScoreList() {
         return scoreList;
-    }
-
-    public void clearHighScoreList() {
-        scoreList = new ArrayList<>();
     }
 }

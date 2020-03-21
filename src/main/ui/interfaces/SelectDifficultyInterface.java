@@ -19,9 +19,6 @@ public class SelectDifficultyInterface extends DefaultScene implements EventHand
     // EFFECTS: constructs a new DefaultScene, and initialized difficulty list and sets selectedDifficulty to default 1
     public SelectDifficultyInterface() {
         super();
-        selectedDifficulty = 1; // Default Difficulty
-        difficultyList = new ArrayList<>();
-        super.initializeGraphics();
     }
 
     @Override
@@ -29,6 +26,7 @@ public class SelectDifficultyInterface extends DefaultScene implements EventHand
     protected void initializeRegions() {
         super.createNewLabel("Choose your difficulty");
 
+        difficultyList = new ArrayList<>();
         for (int i = 1; i <= MAX_DIFFICULTY; i++) {
             DifficultyButton difficultyButton = new DifficultyButton(i, this);
             difficultyList.add(difficultyButton);

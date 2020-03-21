@@ -8,14 +8,11 @@ import ui.defaultlayouts.DefaultScene;
 
 // The interface for after someone has pressed fire and shows them if they won or lost
 public class AfterDualInterface extends DefaultScene implements EventHandler<ActionEvent> {
-    private PlayableCharacter hero;
 
     // MODIFIES: this
     // EFFECTS: Constructs a new DefaultScene
-    public AfterDualInterface(PlayableCharacter hero) {
+    public AfterDualInterface() {
         super();
-        this.hero = hero;
-        super.initializeGraphics();
     }
 
     @Override
@@ -31,7 +28,7 @@ public class AfterDualInterface extends DefaultScene implements EventHandler<Act
 
     // EFFECTS: returns a string which will be displayed depending on if the user won or not
     private String nameOutcomeString() {
-        if (hero.getHasWon()) {
+        if (PlayableCharacter.getInstance().getHasWon()) {
             return "Congrats you won!";
         } else {
             return "You died";
@@ -40,8 +37,8 @@ public class AfterDualInterface extends DefaultScene implements EventHandler<Act
 
     // EFFECTS: returns a string which will have the users reaction time if won or a motivational line if they lost
     private String nameGetTimeString() {
-        if  (hero.getHasWon()) {
-            return "Your time was " + hero.getReactionSpeed() + "ms!";
+        if  (PlayableCharacter.getInstance().getHasWon()) {
+            return "Your time was " + PlayableCharacter.getInstance().getReactionSpeed() + "ms!";
         } else {
             return "You must improve your skills and try again";
         }

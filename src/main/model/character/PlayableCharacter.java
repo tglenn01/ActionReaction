@@ -1,11 +1,11 @@
 package model.character;
 
 // The user controlled character
-
 public class PlayableCharacter extends Character {
+    private static PlayableCharacter hero;
 
     //EFFECT: The playable character
-    public PlayableCharacter() {
+    private PlayableCharacter() {
         this.name = "Graham The Hero";
         this.victoryLine = this.name + ": Oh no he's dead!";
         this.deathLine = this.name + ": Em.. i... lyyyyyy.. sorry    I, could...n't.. survive";
@@ -13,21 +13,23 @@ public class PlayableCharacter extends Character {
         this.hasWon = false;
     }
 
+    // EFFECTS: applies singleton principle to allow onyl one playable character at a time
+    public static PlayableCharacter getInstance() {
+        if (hero == null) {
+            hero = new PlayableCharacter();
+        }
+        return hero;
+    }
+
     // setter
     public void setReactionSpeed(long reactionTime) {
         this.reactionSpeed = reactionTime;
     }
 
-    // setter
-    public void setHasWon(Boolean outcome) {
-        this.hasWon = outcome;
+    // EFFECTS: resets the playable character
+    public void clearCharacter() {
+        hero = new PlayableCharacter();
     }
-
-    // getter
-    public boolean getHasWon() {
-        return this.hasWon;
-    }
-
 
 }
 

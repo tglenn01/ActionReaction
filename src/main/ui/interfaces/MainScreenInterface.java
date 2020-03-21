@@ -16,7 +16,6 @@ public class MainScreenInterface extends DefaultScene implements EventHandler<Ac
     // EFFECTS: Constructs a new DefaultScene
     public MainScreenInterface() {
         super();
-        super.initializeGraphics();
     }
 
     // EFFECTS: constructs 3 different buttons to be taken to dual, high score, and save interfaces

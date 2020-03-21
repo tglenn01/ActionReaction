@@ -22,7 +22,6 @@ public class HighScoreListInterface extends DefaultScene implements EventHandler
     // EFFECTS: Constructs a new DefaultScene
     public HighScoreListInterface() {
         super();
-        super.initializeGraphics();
     }
 
     // EFFECTS: Creates a VBox of DefaultLabels and puts it on top of a DefaultButton
@@ -47,7 +46,7 @@ public class HighScoreListInterface extends DefaultScene implements EventHandler
     }
 
     @Override
-    // EFFECTS: returns the user to the mainScreenInterface
+    // EFFECTS: clears data if clearDataButton is chosen then returns to main screen for both buttons
     public void handle(ActionEvent event) {
         if (event.getSource() == clearDataButton) {
             HighScoreList.getInstance().clearHighScoreList();

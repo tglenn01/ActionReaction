@@ -15,7 +15,6 @@ public class BeforeDualInterface extends DefaultScene implements EventHandler<Ac
     public BeforeDualInterface(Dual dual) {
         super();
         this.dual = dual;
-        super.initializeGraphics();
     }
 
     @Override

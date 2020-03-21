@@ -20,10 +20,9 @@ import static java.lang.Thread.sleep;
 
 // Sources: http://sub-second.blogspot.com/2012/08/how-to-measure-response-times-in-java.html)
 
+// Reaction Time part of the application
 public class ReactionTimerInterface {
     private Dual dual;
-
-    private PlayableCharacter hero;
     private Character enemy;
 
     private long reactionTime;
@@ -31,22 +30,24 @@ public class ReactionTimerInterface {
 
     // MODIFIES: hero
     // EFFECTS: win dual if ui inputs the action faster than the enemy's reaction speed
-    public ReactionTimerInterface(Dual dual, PlayableCharacter hero, Character enemy) throws InterruptedException {
+    public ReactionTimerInterface(Dual dual, Character enemy) throws InterruptedException {
         this.dual = dual;
-        this.hero = hero;
         this.enemy = enemy;
         run();
     }
 
+    // EFFECTS: starts the anticipation timer for before fire goes off then shows fire and starts timer
     private void run() throws InterruptedException {
         startAnticipationTimer();
         startReactionTimer();
     }
 
+    // EFFECTS: makes user wait for the fire to go off
     private void startAnticipationTimer() throws InterruptedException {
         sleep(getRandomNumber());
     }
 
+    // EFFECTS: timer starts and waits for user input, plays sound at the start
     private void startReactionTimer() {
         setAfterFireScene();
         playSound();
@@ -55,10 +56,10 @@ public class ReactionTimerInterface {
             if (event.getCode() == KeyCode.ENTER) {
                 long milliEnd = System.currentTimeMillis();
                 reactionTime = milliEnd - milliStart;
-                hero.setReactionSpeed(reactionTime);
-                hero.setHasWon(reactionTime < enemy.getReactionSpeed());
+                PlayableCharacter.getInstance().setReactionSpeed(reactionTime);
+                PlayableCharacter.getInstance().setHasWon(reactionTime < enemy.getReactionSpeed());
             } else {
-                hero.setHasWon(false);
+                PlayableCharacter.getInstance().setHasWon(false);
             }
             dual.afterDual();
         });

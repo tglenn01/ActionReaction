@@ -11,6 +11,7 @@ import java.io.IOException;
 // Saves high score list of current session for future use
 public class SaveData {
 
+    // EFFECTS: saves data to the JSON file
     public SaveData(String account) throws IOException {
         JSONObject jsonObject = new JSONObject();
         JSONArray jsonList = new JSONArray();

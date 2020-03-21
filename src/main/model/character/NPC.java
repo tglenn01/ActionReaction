@@ -19,4 +19,9 @@ public class NPC extends Character {
     public void setReactionSpeed(long selectedDifficulty)  {
         this.reactionSpeed = BASE_REACTION_SPEED / selectedDifficulty;
     }
+
+    // EFFECTS: resets the npc
+    public void clearCharacter() {
+        new NPC();
+    }
 }
