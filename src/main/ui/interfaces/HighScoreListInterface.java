@@ -15,8 +15,8 @@ import java.util.List;
 
 // The interface when a user is looking at their highscores
 public class HighScoreListInterface extends DefaultScene implements EventHandler<ActionEvent> {
-    private DefaultButton returnButton;
-    private DefaultButton clearDataButton;
+    private Button returnButton;
+    private Button clearDataButton;
 
     // MODIFIES: this
     // EFFECTS: Constructs a new DefaultScene

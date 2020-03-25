@@ -39,5 +39,23 @@ restart the application every time.
 Postscript:
 - If you wanna try and win on the hardest difficulty it requires .2 second reaction time! Good luck!
 
+Phase 4: Task 2 
+- I have a type hierarchy with DefaultScene and all classes in the interface folder (except for ReactionTimerInterface
+ which has different functionality from the rest). The abstract class DefaultScene has the abstract method 
+ InitializeRegions which is called in the constructor for the class which is then implemented in different ways in 
+ each interface. In each classes implementation they will call methods from the super class in order to create their
+ scenes based on how each one needs to look in a uniform manner, and to avoid repeated code.
+ - Character, NPC, and PlayableCharacter is another type hierarchy. Although it is less complex it should still be
+ mentioned as it has abstract methods and overriding.
+ 
+ Phase 4: Task 3
+ - When I originally finished phase 3 I had noticed quite a bit of coupling where I had passed the GameUI into every
+ single interface in order to be able to set the scene and it wasn't very efficient. With the combination of applying
+ the singleton principle with GameUI as well as getting the primaryStage in the DefaultScene class I no longer had to
+ pass in the GameUI. I also was passing the HighScoreList quite a bit so applying the singleton principle helped
+ reduce that coupling. I also applied the singleton principle to the PlayableCharacter class so I could implement new
+ functionality into it so a user can customize their character in the future without having to redo it each new dual.
+ - My UML diagram is labeled UMLProjectPhase4.pdf and found just below the read me file
+ 
 
 

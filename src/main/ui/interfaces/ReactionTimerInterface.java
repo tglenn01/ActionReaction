@@ -23,16 +23,14 @@ import static java.lang.Thread.sleep;
 // Reaction Time part of the application
 public class ReactionTimerInterface {
     private Dual dual;
-    private Character enemy;
 
     private long reactionTime;
     private Scene reactionTimerScene;
 
     // MODIFIES: hero
     // EFFECTS: win dual if ui inputs the action faster than the enemy's reaction speed
-    public ReactionTimerInterface(Dual dual, Character enemy) throws InterruptedException {
+    public ReactionTimerInterface(Dual dual) throws InterruptedException {
         this.dual = dual;
-        this.enemy = enemy;
         run();
     }
 
@@ -57,7 +55,7 @@ public class ReactionTimerInterface {
                 long milliEnd = System.currentTimeMillis();
                 reactionTime = milliEnd - milliStart;
                 PlayableCharacter.getInstance().setReactionSpeed(reactionTime);
-                PlayableCharacter.getInstance().setHasWon(reactionTime < enemy.getReactionSpeed());
+                PlayableCharacter.getInstance().setHasWon(reactionTime < dual.getEnemy().getReactionSpeed());
             } else {
                 PlayableCharacter.getInstance().setHasWon(false);
             }

@@ -26,7 +26,7 @@ public class Dual {
     public void reactionTimeDual() {
         this.enemy.setReactionSpeed(selectedDifficultly);
         try {
-            new ReactionTimerInterface(this, enemy);
+            new ReactionTimerInterface(this);
         } catch (InterruptedException e) {
             System.out.println("ReactionTimerInterface was stopped part way, investigate");
         }
@@ -39,5 +39,10 @@ public class Dual {
             HighScoreList.getInstance().addHighScore(PlayableCharacter.getInstance().getReactionSpeed());
         }
         new AfterDualInterface();
+    }
+
+    // getter
+    public Character getEnemy() {
+        return enemy;
     }
 }
