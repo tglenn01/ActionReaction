@@ -25,7 +25,6 @@ public abstract class DefaultScene {
     // MODIFIES: this
     // EFFECTS: sets the gameUI to given gameUI and creates a new List for the regionList
     public DefaultScene() {
-        super();
         regionList = new LinkedList<>();
         initializeGraphics();
     }
@@ -74,7 +73,7 @@ public abstract class DefaultScene {
     protected HBox createHorizontalList(List list) {
         HBox listLayout = new HBox();
         listLayout.setAlignment(Pos.CENTER);
-        listLayout.setSpacing(10.0);
+        listLayout.setSpacing(SPACING);
         listLayout.getChildren().addAll(list);
         regionList.add(listLayout);
         return listLayout;
@@ -85,7 +84,7 @@ public abstract class DefaultScene {
     protected void setScene() {
         VBox layout = new VBox();
         layout.getChildren().addAll(regionList);
-        layout.setSpacing(10.0);
+        layout.setSpacing(SPACING);
         layout.setAlignment(Pos.CENTER);
         layout.setId("background");
         Scene newScene = new Scene(layout, GAME_WIDTH, GAME_HEIGHT);
