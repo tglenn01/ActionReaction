@@ -1,6 +1,5 @@
-# My Personal Project
+
 **Action Reaction**
-## A subtitle
 **Reaction Time Dual Adventure**
 
 Action Reaction is a reaction time based mini game inspried by samurai kirby from Kirby Super Star. The User will run
